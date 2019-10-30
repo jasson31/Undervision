@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public Transform player;
     public float speed;
+    public VisionType visionType;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        foreach(Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_StencilMask", (int)visionType);
+            r.material.SetColor("_Color", Constants.Vision_Color(visionType));
+        }
+    }
     void Update()
     {
         transform.Translate(Vector3.Normalize(transform.position - player.position) * speed);

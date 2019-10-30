@@ -1,7 +1,7 @@
 ﻿Shader "Custom/Window"
 {
 	Properties{
-		_StencilMask("Mask Layer", Range(0, 255)) = 1
+		_StencilMask("Mask Layer", Range(0, 255)) = 0
 	}
 		SubShader
 	{
