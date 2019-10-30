@@ -1,4 +1,4 @@
-﻿Shader "Custom/NewSurfaceShader 1"
+﻿Shader "Custom/OuterWall"
 {
     Properties
     {
