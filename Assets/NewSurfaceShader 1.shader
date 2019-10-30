@@ -1,4 +1,4 @@
-﻿Shader "Custom/NewSurfaceShader"
+﻿Shader "Custom/NewSurfaceShader 1"
 {
     Properties
     {
@@ -11,6 +11,7 @@
     {
         Tags { "RenderType"="Opaque" }
         LOD 200
+		Cull Front
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
