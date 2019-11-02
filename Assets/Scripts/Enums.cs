@@ -5,7 +5,10 @@ public enum VisionType
 {
     White=0,Red=1,Green=2,Blue=4
 };
-
+public enum EnemyType
+{
+    Skull=0,Drone=1,Golem=2
+};
 public static class Constants
 {
     public static Color Vision_Color(VisionType vType)
