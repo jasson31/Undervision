@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Enemy Drone, Golem, Skull;
+    public Transform player;
+    public float enemySpawnDist = 22;
 
-
-
-    private Enemy SpawnEnemy(EnemyType _enemyType, VisionType _visionType, Vector3 pos)
+    private Enemy SpawnEnemy(EnemyType _enemyType, VisionType _visionType, float dist, float degrees)
     {
         Enemy temp = null;
         switch (_enemyType)
@@ -25,20 +25,20 @@ public class EnemySpawner : MonoBehaviour
             default:
                 Debug.LogError("Invalid Enemy Type of " + _enemyType);
                 return null;
-                break;
         }
-        temp.transform.position = pos;
+        float rad = degrees * Mathf.PI / 180f;
+        temp.transform.position = new Vector3(Mathf.Sin(rad) * dist, 0, Mathf.Cos(rad) * dist);
         temp.ChangeColor(_visionType);
+        temp.player = player;
         return temp;
     }
-
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemy(EnemyType.Drone, VisionType.White, new Vector3(-1.76f, 0.61f, 23.35f));
-        SpawnEnemy(EnemyType.Golem, VisionType.Green, new Vector3(14.12f, 0, 17.51f));
-        SpawnEnemy(EnemyType.Golem, VisionType.Blue, new Vector3(14.8f, 0, 17.51f));
+        SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 0);
+        SpawnEnemy(EnemyType.Golem, VisionType.White, enemySpawnDist, -12);
+        SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 12);
     }
 
     // Update is called once per frame
