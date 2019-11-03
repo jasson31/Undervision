@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum VisionType
 {
-    White=0,Red=1,Green=2,Blue=4
+    White=0,Red=1,Green=2,Blue=3
 };
 public enum EnemyType
 {

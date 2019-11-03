@@ -9,13 +9,19 @@ public class Enemy : MonoBehaviour
     public VisionType visionType;
     public EnemyType enemyType;
 
+    public void ChangeColor(VisionType _visionType)
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_MaskType", (int)_visionType);
+            r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+        }
+        visionType = _visionType;
+    }
+
     private void Start()
     {
-        foreach(Renderer r in GetComponentsInChildren<Renderer>())
-        {
-            r.material.SetInt("_StencilMask", (int)visionType);
-            r.material.SetColor("_Color", Constants.Vision_Color(visionType));
-        }
+
     }
     void Update()
     {

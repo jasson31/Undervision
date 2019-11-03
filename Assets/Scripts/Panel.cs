@@ -8,12 +8,18 @@ public class Panel : MonoBehaviour
     public Renderer panelRenderer;
     public Renderer[] frameRenderers;
 
-    private void Start()
+    public void ChangeColor(VisionType _visionType)
     {
         foreach (Renderer r in frameRenderers)
         {
-            r.material.SetColor("_Color", Constants.Vision_Color(visionType));
+            r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
         }
-        panelRenderer.material.SetInt("_StencilMask", (int)visionType);
+        panelRenderer.material.SetInt("_MaskType", (int)_visionType);
+        visionType = _visionType;
+    }
+
+    private void Start()
+    {
+        ChangeColor(visionType);
     }
 }
