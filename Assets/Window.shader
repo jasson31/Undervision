@@ -1,7 +1,7 @@
 ﻿Shader "Custom/Window"
 {
 	Properties{
-		_StencilMask("Mask Layer", Range(0, 255)) = 0
+		_MaskType("Mask type", Range(0, 10)) = 0
 	}
 		SubShader
 	{
@@ -9,9 +9,9 @@
 		ZWrite Off
 		ColorMask 0
 		Pass {
+			ZTest Less
 			Stencil {
-				 Ref 255
-				 WriteMask[_StencilMask]
+				 Ref [_MaskType]
 				 Comp Always
 				 Pass Replace
 			}
