@@ -9,6 +9,7 @@ public class GunBehavior : GrabbableObject
     public GameObject bullet;
     private bool isReloading = false;
     private float bulletSpeed = 10;
+    private float triggerDelay = 0.5f, previousTriggeredTime;
     [SerializeField]
     private int bullets = 6;
 
@@ -17,14 +18,14 @@ public class GunBehavior : GrabbableObject
         var newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
         newBullet.GetComponent<Rigidbody>().velocity = firePoint.up.normalized * bulletSpeed;
         bullets--;
-        //animator.SetTrigger("Fire");
+        animator.SetTrigger("Fire");
         Destroy(newBullet, 10);
     }
 
     public IEnumerator Reload()
     {
         isReloading = true;
-        //animator.SetTrigger("Reload");
+        animator.SetTrigger("Reload");
         yield return new WaitForSeconds(1);
         bullets = 6;
         isReloading = false;
@@ -32,13 +33,17 @@ public class GunBehavior : GrabbableObject
 
     public override void HairTrigger()
     {
-        if (bullets > 0 && !isReloading)
+        if(Time.time - previousTriggeredTime > triggerDelay && !isReloading)
         {
-            Shoot();
-        }
-        else
-        {
-            StartCoroutine(Reload());
+            if (bullets > 0)
+            {
+                Shoot();
+            }
+            else
+            {
+                StartCoroutine(Reload());
+            }
+            previousTriggeredTime = Time.time;
         }
     }
 
@@ -51,6 +56,20 @@ public class GunBehavior : GrabbableObject
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (Time.time - previousTriggeredTime > triggerDelay && !isReloading)
+            {
+                if (bullets > 0)
+                {
+                    Shoot();
+                }
+                else
+                {
+                    StartCoroutine(Reload());
+                }
+                previousTriggeredTime = Time.time;
+            }
+        }
     }
 }
