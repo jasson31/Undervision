@@ -36,8 +36,8 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 0);
-        SpawnEnemy(EnemyType.Golem, VisionType.White, enemySpawnDist, -12);
+        SpawnEnemy(EnemyType.Skull, VisionType.Blue, enemySpawnDist, 0);
+        SpawnEnemy(EnemyType.Golem, VisionType.Red, enemySpawnDist, -12);
         SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 12);
     }
 

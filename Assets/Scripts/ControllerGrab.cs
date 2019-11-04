@@ -76,14 +76,11 @@ public class ControllerGrab : MonoBehaviour
             grabbingObject.transform.Rotate(grabbingObject.GetComponent<GrabbableObject>().angle);
             if(hairButton.GetLastStateDown(input))
             {
+                grabbingObject.GetComponent<GrabbableObject>().HairTrigger();
                 if (grabbingObject.layer.Equals(LayerMask.NameToLayer("Panel")))
                 {
-                    
                     grabbingObject = null;
                     conModel.SetActive(true);
-                }
-                else if (grabbingObject.tag.Contains("Gun")){
-
                 }
             }
         }

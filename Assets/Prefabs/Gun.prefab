@@ -89,12 +89,11 @@ GameObject:
   - component: {fileID: 1647051891911928237}
   - component: {fileID: 1059888762870765705}
   - component: {fileID: 2513133356610501048}
-  - component: {fileID: 291478063}
   - component: {fileID: 291478064}
   - component: {fileID: 3590532863922958393}
   m_Layer: 9
-  m_Name: ColtPython
-  m_TagString: Untagged
+  m_Name: Gun
+  m_TagString: Grabbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 2342110541178035134}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 7161344545161128193}
   - {fileID: 2406396790405778149}
@@ -129,9 +128,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2342110541178035134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a8c30fefb331d74498f7c70051f75a99, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6a1ad1b7d0e1bde499c76c10ec92848e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -153,25 +152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0, z: 0}
-  angle: {x: 0, y: 0, z: 0}
-  firePoint: {fileID: 0}
+  angle: {x: 125, y: 0, z: 0}
+  animator: {fileID: 1059888762870765705}
+  firePoint: {fileID: 5297703660587277090}
   bullet: {fileID: 4660304206216716420, guid: 7db06b207dfc3154ebeb459c177ba1a3, type: 3}
---- !u!114 &291478063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2342110541178035134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69608245590c6ab4490e5bc139ac3a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0, z: 0}
-  angle: {x: 0, y: 0, z: 0}
-  firePoint: {fileID: 0}
-  bullet: {fileID: 0}
+  bullets: 6
 --- !u!65 &291478064
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public VisionType visionType;
     public EnemyType enemyType;
     public GameObject[] hearts;
+    [SerializeField]
     int hp;
 
     public void ChangeColor(VisionType _visionType)
