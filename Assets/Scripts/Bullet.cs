@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-
+        if (collision.gameObject.tag.Equals("Enemy"))
+            collision.gameObject.GetComponent<Enemy>().Damaged();
         Destroy(gameObject);
     }
 }
