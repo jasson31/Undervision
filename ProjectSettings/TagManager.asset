@@ -7,6 +7,7 @@ TagManager:
   - Grabbable
   - projectile
   - FxTemporaire
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Weapon
   - Table
   - Enemy
-  - 
+  - Bullet
   - 
   - 
   - 
