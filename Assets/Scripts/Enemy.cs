@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//delegate void EnemyEvent();
 public class Enemy : MonoBehaviour
 {
     public Transform player;
@@ -11,6 +12,10 @@ public class Enemy : MonoBehaviour
     public GameObject[] hearts;
     [SerializeField]
     int hp;
+    [SerializeField]
+    AudioSource audioSource;
+
+    //event EnemyEvent enemyEvent;
 
     public void ChangeColor(VisionType _visionType)
     {
@@ -20,6 +25,39 @@ public class Enemy : MonoBehaviour
             r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
         }
         visionType = _visionType;
+        switch (_visionType)
+        {
+            case VisionType.Red: StartCoroutine(Illuminate()); break;
+            case VisionType.Green: StartCoroutine(Vibrate()); break;
+            case VisionType.Blue: StartCoroutine(Roar()); break;
+            default: break;
+        }
+    }
+
+    public IEnumerator Illuminate()
+    {
+        yield return null;
+        //Illuminate
+    }
+
+    public IEnumerator Vibrate()
+    {
+        //Vibrate start;
+        while (true)
+        {
+            yield return null;
+            //Vibrate amount increase;
+        }
+    }
+
+    public IEnumerator Roar()
+    {
+        audioSource.Play();
+        while (true)
+        {
+            yield return null;
+            audioSource.volume = (1 - Vector3.Distance(player.position, transform.position) / EnemySpawner.enemySpawnDist) / 2;
+        }
     }
 
     private void Start()

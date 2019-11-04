@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public Enemy Drone, Golem, Skull;
     public Transform player;
-    public float enemySpawnDist = 22;
+    public static float enemySpawnDist = 22;
 
     private Enemy SpawnEnemy(EnemyType _enemyType, VisionType _visionType, float dist, float degrees)
     {
@@ -32,13 +32,21 @@ public class EnemySpawner : MonoBehaviour
         temp.player = player;
         return temp;
     }
+    IEnumerator Temp()
+    {
+        SpawnEnemy(EnemyType.Skull, VisionType.Blue, enemySpawnDist, 0);
+
+        yield return new WaitForSeconds(0.5f);
+        SpawnEnemy(EnemyType.Golem, VisionType.Red, enemySpawnDist, -12);
+
+        yield return new WaitForSeconds(0.5f);
+        SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 12);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemy(EnemyType.Skull, VisionType.Blue, enemySpawnDist, 0);
-        SpawnEnemy(EnemyType.Golem, VisionType.Red, enemySpawnDist, -12);
-        SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 12);
+        StartCoroutine(Temp());
     }
 
     // Update is called once per frame
