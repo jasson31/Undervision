@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public float speed;
     public VisionType visionType;
     public EnemyType enemyType;
+    public GameObject[] hearts;
+    int hp;
 
     public void ChangeColor(VisionType _visionType)
     {
@@ -21,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-
+        hp = hearts.Length;
     }
     void Update()
     {
@@ -36,7 +38,18 @@ public class Enemy : MonoBehaviour
             transform.LookAt(player);
             transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
         }
-
-
+    }
+    public void Damaged()
+    {
+        hp--;
+        for(int i = hp; i < hearts.Length; i++)
+        {
+            hearts[i].SetActive(false);
+        }
+        if (hp <= 0) Killed();
+    }
+    public void Killed()
+    {
+        Destroy(gameObject);
     }
 }
