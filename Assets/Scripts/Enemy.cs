@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
+using Valve.VR.InteractionSystem;
 
-//delegate void EnemyEvent();
 public class Enemy : MonoBehaviour
 {
+    public SteamVR_Action_Vibration hapticAction;
     public Transform player;
     public float speed;
     public VisionType visionType;
@@ -14,8 +16,8 @@ public class Enemy : MonoBehaviour
     int hp;
     [SerializeField]
     AudioSource audioSource;
+    private float distRate;
 
-    //event EnemyEvent enemyEvent;
 
     public void ChangeColor(VisionType _visionType)
     {
@@ -42,11 +44,15 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator Vibrate()
     {
-        //Vibrate start;
         while (true)
         {
             yield return null;
-            //Vibrate amount increase;
+            //float leftContDistRate = -transform.position.x / (EnemySpawner.enemySpawnDist * 2) + 0.5f;
+            //float rightContDistRate = transform.position.x / (EnemySpawner.enemySpawnDist * 2) + 0.5f;
+            float leftContDistRate = 1;
+            float rightContDistRate = 1;
+            hapticAction.Execute(0, 0.02f, distRate * 200 * leftContDistRate, distRate * 500 * leftContDistRate, SteamVR_Input_Sources.LeftHand);
+            hapticAction.Execute(0, 0.02f, distRate * 200 * rightContDistRate, distRate * 500 * rightContDistRate, SteamVR_Input_Sources.RightHand);
         }
     }
 
@@ -56,7 +62,7 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             yield return null;
-            audioSource.volume = (1 - Vector3.Distance(player.position, transform.position) / EnemySpawner.enemySpawnDist) / 2;
+            audioSource.volume = distRate / 2;
         }
     }
 
@@ -66,7 +72,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if(enemyType == EnemyType.Drone)
+        if (enemyType == EnemyType.Drone)
         {
             transform.position = transform.position - Vector3.Normalize(transform.position - player.position) * speed;
             transform.LookAt(player);
@@ -77,6 +83,7 @@ public class Enemy : MonoBehaviour
             transform.LookAt(player);
             transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
         }
+        distRate = 1 - Vector3.Distance(player.position, transform.position) / EnemySpawner.enemySpawnDist;
     }
     public void Damaged()
     {

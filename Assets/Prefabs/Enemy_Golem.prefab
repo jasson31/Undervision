@@ -576,6 +576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9ead5b85291744d92acea9a9faee2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hapticAction:
+    actionPath: /actions/default/out/Haptic
+    needsReinit: 0
   player: {fileID: 0}
   speed: 0.005
   visionType: 0
@@ -673,7 +676,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

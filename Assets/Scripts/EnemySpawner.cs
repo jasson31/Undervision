@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         SpawnEnemy(EnemyType.Golem, VisionType.Red, enemySpawnDist, -12);
 
         yield return new WaitForSeconds(0.5f);
-        SpawnEnemy(EnemyType.Skull, VisionType.White, enemySpawnDist, 12);
+        SpawnEnemy(EnemyType.Skull, VisionType.Green, enemySpawnDist, 12);
     }
 
     // Start is called before the first frame update
