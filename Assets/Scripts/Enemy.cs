@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
         {
             r.material.SetInt("_MaskType", (int)_visionType);
             r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            if(_visionType == VisionType.White) r.material.SetInt("_StencilComp", 0);
             if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0.75f, 0.8f));
         }
         visionType = _visionType;
@@ -113,7 +114,7 @@ public class Enemy : MonoBehaviour
         {
             r.material.SetInt("_MaskType", 0);
         }
-        if(GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
+        if (GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
         if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
     }
 }

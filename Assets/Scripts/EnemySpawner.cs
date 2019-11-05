@@ -73,16 +73,7 @@ public class EnemySpawner : MonoBehaviour
         enemys.Add(temp.gameObject);
         return temp;
     }
-    IEnumerator Temp()
-    {
-        SpawnEnemy(EnemyType.Skull, VisionType.Red, enemySpawnDist, 0);
 
-        yield return new WaitForSeconds(0.5f);
-        SpawnEnemy(EnemyType.Golem, VisionType.Red, enemySpawnDist, -12);
-
-        yield return new WaitForSeconds(0.5f);
-        SpawnEnemy(EnemyType.Drone, VisionType.White, enemySpawnDist, 12);
-    }
     IEnumerator StageTextShow(int s)
     {
         stageText.text = "Stage " + s;
@@ -124,7 +115,7 @@ public class EnemySpawner : MonoBehaviour
 
         while (true)
         {
-            for(int i = 0; i < initialEnemy; ++i)
+            for(int i = 0; i < enemyNum; ++i)
             {
                 SpawnEnemy((EnemyType)Random.Range(0,3), enableType[Random.Range(0, enableType.Count)], enemySpawnDist, Random.Range(-angle, angle));
                 if(nextDelay >= delay)

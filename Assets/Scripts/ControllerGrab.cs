@@ -49,7 +49,6 @@ public class ControllerGrab : MonoBehaviour
         }
         if (other.tag.Contains("Grabbable"))
         {
-            Debug.Log("#" + other.name);
             other.GetComponent<Outline>().enabled = false;
         }
     }
