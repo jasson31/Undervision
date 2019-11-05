@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
         Debug.Log("Coll " + other.gameObject.name);
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Enemy")))
         {
-            GameOver();
+            //GameOver();
+            other.GetComponent<Enemy>().Killed();
         }
     }
 
