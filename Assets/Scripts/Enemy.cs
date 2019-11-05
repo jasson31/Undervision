@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (!gameOver)
+        if (!spawner.gameOver)
         {
             if (enemyType == EnemyType.Drone)
             {
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
     }
     public void Damaged()
     {
-        if (!gameOver)
+        if (!spawner.gameOver)
         {
             hp--;
             for (int i = hp; i < hearts.Length; i++)
@@ -113,7 +113,6 @@ public class Enemy : MonoBehaviour
         {
             r.material.SetInt("_MaskType", 0);
         }
-        gameOver = true;
         if(GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
         if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
     }

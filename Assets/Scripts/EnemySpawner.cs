@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform player;
     public List<GameObject> enemys;
     public static float enemySpawnDist = 22;
-    bool gameOver;
+    public bool gameOver;
 
     public float initialDelay;
     public float delayDec;

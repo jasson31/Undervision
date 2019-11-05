@@ -47,12 +47,18 @@ public class ControllerGrab : MonoBehaviour
                 }
             }
         }
-        collidingObject.GetComponent<Outline>().enabled = false;
+        if (other.tag.Contains("Grabbable"))
+        {
+            Debug.Log("#" + other.name);
+            other.GetComponent<Outline>().enabled = false;
+        }
     }
     public void DropObject()
     {
         if (grabbingObject)
         {
+            if (grabbingObject.layer.Equals(LayerMask.NameToLayer("Weapon")))
+                grabbingObject.GetComponentInChildren<LineRenderer>().enabled = false;
             grabbingObject.GetComponent<Rigidbody>().isKinematic = false;
             grabbingObject = null;
             conModel.SetActive(true);
@@ -75,6 +81,8 @@ public class ControllerGrab : MonoBehaviour
                 collidingObject = null;
                 collidingCand.Clear();
                 grabbingObject.GetComponent<Outline>().enabled = false;
+                if (grabbingObject.layer.Equals(LayerMask.NameToLayer("Weapon")))
+                    grabbingObject.GetComponentInChildren<LineRenderer>().enabled = true;
                 conModel.SetActive(false);
             }
             else
