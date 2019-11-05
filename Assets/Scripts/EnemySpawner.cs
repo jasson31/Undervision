@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     public float initialAngle;
     public float angleIncByStage;
     public float angleMax;
+    public TextMesh stageText;
 
     Coroutine playCoroutine;
     private Panel SpawnPanel(PanelType _panelType, VisionType _visionType)
@@ -82,6 +83,25 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SpawnEnemy(EnemyType.Drone, VisionType.White, enemySpawnDist, 12);
     }
+    IEnumerator StageTextShow(int s)
+    {
+        stageText.text = "Stage " + s;
+        for(float t = 0; t < 0.5; t += Time.deltaTime)
+        {
+            stageText.color = new Color(1, 1, 1, t * 2);
+            yield return null;
+        }
+        stageText.color = new Color(1, 1, 1, 1);
+
+        yield return new WaitForSeconds(2f);
+
+        for (float t = 0; t < 2; t += Time.deltaTime)
+        {
+            stageText.color = new Color(1, 1, 1, 1 - t / 2);
+            yield return null;
+        }
+        stageText.color = new Color(1, 1, 1, 0);
+    }
     IEnumerator Stage()
     {
         List<VisionType> enableType = new List<VisionType>();
@@ -99,7 +119,7 @@ public class EnemySpawner : MonoBehaviour
         float angle = initialAngle;
 
         //스테이지 0 안내
-        Debug.Log("******************STAGE 0******************");
+        StartCoroutine(StageTextShow(0));
         yield return new WaitForSeconds(5f);
 
         while (true)
@@ -132,7 +152,7 @@ public class EnemySpawner : MonoBehaviour
                 enableType.Add(newVision);
                 SpawnPanel(PanelType.Normal, newVision);
             }
-            Debug.Log("******************STAGE "+stage+"******************");
+            StartCoroutine(StageTextShow(stage));
             yield return new WaitForSeconds(6f);
         }
     }

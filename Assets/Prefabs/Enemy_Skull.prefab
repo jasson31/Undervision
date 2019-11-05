@@ -684,12 +684,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 0.01
+  speed: 0.014
   visionType: 0
   enemyType: 0
   hearts:
   - {fileID: 390763240326775954}
   - {fileID: 6264701039311762549}
+  spawner: {fileID: 0}
   hp: 0
   audioSource: {fileID: 5031610570359572261}
 --- !u!136 &6572955426381327996

@@ -60,3 +60,4 @@ MonoBehaviour:
   initialAngle: 20
   angleIncByStage: 10
   angleMax: 70
+  stageText: {fileID: 0}

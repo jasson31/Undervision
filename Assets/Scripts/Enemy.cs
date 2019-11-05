@@ -86,12 +86,15 @@ public class Enemy : MonoBehaviour
     }
     public void Damaged()
     {
-        hp--;
-        for(int i = hp; i < hearts.Length; i++)
+        if (!gameOver)
         {
-            hearts[i].SetActive(false);
+            hp--;
+            for (int i = hp; i < hearts.Length; i++)
+            {
+                hearts[i].SetActive(false);
+            }
+            if (hp <= 0) Killed();
         }
-        if (hp <= 0) Killed();
     }
     public void Killed()
     {
