@@ -47,12 +47,8 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             yield return null;
-            //float leftContDistRate = -transform.position.x / (EnemySpawner.enemySpawnDist * 2) + 0.5f;
-            //float rightContDistRate = transform.position.x / (EnemySpawner.enemySpawnDist * 2) + 0.5f;
-            float leftContDistRate = 1;
-            float rightContDistRate = 1;
-            hapticAction.Execute(0, 0.02f, distRate * 200 * leftContDistRate, distRate * 500 * leftContDistRate, SteamVR_Input_Sources.LeftHand);
-            hapticAction.Execute(0, 0.02f, distRate * 200 * rightContDistRate, distRate * 500 * rightContDistRate, SteamVR_Input_Sources.RightHand);
+            hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, SteamVR_Input_Sources.LeftHand);
+            hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, SteamVR_Input_Sources.RightHand);
         }
     }
 
@@ -68,6 +64,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         hp = hearts.Length;
     }
     void Update()

@@ -8,7 +8,7 @@ public class GunBehavior : GrabbableObject
     public Transform firePoint;
     public GameObject bullet;
     private bool isReloading = false;
-    private float bulletSpeed = 10;
+    private float bulletSpeed = 50;
     private float triggerDelay = 0.5f, previousTriggeredTime;
     [SerializeField]
     private int bullets = 6;
