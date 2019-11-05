@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public EnemySpawner spawner;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Coll");
+        Debug.Log("Coll " + other.gameObject.name);
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Enemy")))
         {
             GameOver();
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     void GameOver()
     {
+        spawner.GameOver();
         Debug.Log("GameOver");
     }
 }

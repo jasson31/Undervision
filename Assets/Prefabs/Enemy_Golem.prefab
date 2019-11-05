@@ -585,6 +585,7 @@ MonoBehaviour:
   - {fileID: 896413844242864798}
   - {fileID: 4366635814070922336}
   - {fileID: 727787073691886544}
+  spawner: {fileID: 0}
   hp: 0
   audioSource: {fileID: -8057102012498770751}
 --- !u!136 &1085759607797473921

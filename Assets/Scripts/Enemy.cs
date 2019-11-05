@@ -10,10 +10,12 @@ public class Enemy : MonoBehaviour
     public VisionType visionType;
     public EnemyType enemyType;
     public GameObject[] hearts;
+    public EnemySpawner spawner;
     [SerializeField]
     int hp;
     [SerializeField]
     AudioSource audioSource;
+    bool gameOver;
 
     //event EnemyEvent enemyEvent;
 
@@ -23,6 +25,7 @@ public class Enemy : MonoBehaviour
         {
             r.material.SetInt("_MaskType", (int)_visionType);
             r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0.75f, 0.8f));
         }
         visionType = _visionType;
         switch (_visionType)
@@ -66,16 +69,19 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if(enemyType == EnemyType.Drone)
+        if (!gameOver)
         {
-            transform.position = transform.position - Vector3.Normalize(transform.position - player.position) * speed;
-            transform.LookAt(player);
-        }
-        else
-        {
-            transform.Translate(Vector3.Normalize(transform.position - player.position) * speed);
-            transform.LookAt(player);
-            transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
+            if (enemyType == EnemyType.Drone)
+            {
+                transform.position = transform.position - Vector3.Normalize(transform.position - player.position) * speed;
+                transform.LookAt(player);
+            }
+            else
+            {
+                transform.Translate(Vector3.Normalize(transform.position - player.position) * speed);
+                transform.LookAt(player);
+                transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
+            }
         }
     }
     public void Damaged()
@@ -89,6 +95,17 @@ public class Enemy : MonoBehaviour
     }
     public void Killed()
     {
+        spawner.EnemyDead(gameObject);
         Destroy(gameObject);
+    }
+    public void GameOver()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_MaskType", 0);
+        }
+        gameOver = true;
+        if(GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
+        if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
     }
 }
