@@ -9,6 +9,10 @@ public enum EnemyType
 {
     Skull=0,Drone=1,Golem=2
 };
+public enum PanelType
+{
+    Normal=0,Long=1
+};
 public static class Constants
 {
     public static Color Vision_Color(VisionType vType)

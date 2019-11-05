@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Enemy
   - OuterWall
+  - HeartFill
   layers:
   - Default
   - TransparentFX

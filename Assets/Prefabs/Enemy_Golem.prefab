@@ -580,7 +580,7 @@ MonoBehaviour:
     actionPath: /actions/default/out/Haptic
     needsReinit: 0
   player: {fileID: 0}
-  speed: 0.005
+  speed: 0.008
   visionType: 0
   enemyType: 2
   hearts:
@@ -588,6 +588,7 @@ MonoBehaviour:
   - {fileID: 896413844242864798}
   - {fileID: 4366635814070922336}
   - {fileID: 727787073691886544}
+  spawner: {fileID: 0}
   hp: 0
   audioSource: {fileID: -8057102012498770751}
   redEffect: {fileID: 8170656751950170684, guid: 5abfcc63ccdd3ae4686d74d259064f7e,

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public VisionType visionType;
     public EnemyType enemyType;
     public GameObject[] hearts;
+    public EnemySpawner spawner;
     [SerializeField]
     int hp;
     [SerializeField]
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
         {
             r.material.SetInt("_MaskType", (int)_visionType);
             r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0.75f, 0.8f));
         }
         visionType = _visionType;
         switch (_visionType)
@@ -71,31 +73,48 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (enemyType == EnemyType.Drone)
+        if (!gameOver)
         {
-            transform.position = transform.position - Vector3.Normalize(transform.position - player.position) * speed;
-            transform.LookAt(player);
+            if (enemyType == EnemyType.Drone)
+            {
+                transform.position = transform.position - Vector3.Normalize(transform.position - player.position) * speed;
+                transform.LookAt(player);
+            }
+            else
+            {
+                transform.Translate(Vector3.Normalize(transform.position - player.position) * speed);
+                transform.LookAt(player);
+                transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
+            }
+            distRate = 1 - Vector3.Distance(player.position, transform.position) / EnemySpawner.enemySpawnDist;
         }
-        else
-        {
-            transform.Translate(Vector3.Normalize(transform.position - player.position) * speed);
-            transform.LookAt(player);
-            transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
-        }
-        distRate = 1 - Vector3.Distance(player.position, transform.position) / EnemySpawner.enemySpawnDist;
     }
     public void Damaged()
     {
-        hp--;
-        for(int i = hp; i < hearts.Length; i++)
+        if (!gameOver)
         {
-            hearts[i].SetActive(false);
+            hp--;
+            for (int i = hp; i < hearts.Length; i++)
+            {
+                hearts[i].SetActive(false);
+            }
+            if (hp <= 0) Killed();
         }
-        if (hp <= 0) Killed();
     }
     public void Killed()
     {
         if (visionType == VisionType.Red) Destroy(redEffect);
+        spawner.EnemyDead(gameObject);
         Destroy(gameObject);
+    }
+    public void GameOver()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_MaskType", 0);
+        }
+        gameOver = true;
+        if(GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
+        if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
     }
 }

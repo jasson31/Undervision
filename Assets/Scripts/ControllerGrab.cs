@@ -9,9 +9,11 @@ public class ControllerGrab : MonoBehaviour
     public SteamVR_Action_Boolean grabButton;
     public SteamVR_Action_Boolean hairButton;
     public GameObject conModel;
+    public ControllerGrab otherHand;
 
     GameObject collidingObject;
-    GameObject grabbingObject;
+    [HideInInspector]
+    public GameObject grabbingObject;
     [SerializeField]
     List<GameObject> collidingCand;
     private void Start()
@@ -45,12 +47,23 @@ public class ControllerGrab : MonoBehaviour
                 }
             }
         }
+        collidingObject.GetComponent<Outline>().enabled = false;
+    }
+    public void DropObject()
+    {
+        if (grabbingObject)
+        {
+            grabbingObject.GetComponent<Rigidbody>().isKinematic = false;
+            grabbingObject = null;
+            conModel.SetActive(true);
+        }
     }
     private void Update()
     {
         if(!grabbingObject && collidingCand.Count > 0)
         {
             collidingObject = collidingCand[0];
+            collidingObject.GetComponent<Outline>().enabled = true;
         }
         if(grabButton.GetLastStateDown(input))
         {
@@ -58,15 +71,15 @@ public class ControllerGrab : MonoBehaviour
             {
                 grabbingObject = collidingObject;
                 grabbingObject.GetComponent<Rigidbody>().isKinematic = true;
+                if (otherHand.grabbingObject == grabbingObject) otherHand.DropObject();
                 collidingObject = null;
                 collidingCand.Clear();
+                grabbingObject.GetComponent<Outline>().enabled = false;
                 conModel.SetActive(false);
             }
-            else if(grabbingObject)
+            else
             {
-                grabbingObject.GetComponent<Rigidbody>().isKinematic = false;
-                grabbingObject = null;
-                conModel.SetActive(true);
+                DropObject();
             }
         }
         if(grabbingObject)
