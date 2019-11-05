@@ -695,6 +695,8 @@ MonoBehaviour:
   - {fileID: 6264701039311762549}
   hp: 0
   audioSource: {fileID: 5031610570359572261}
+  redEffect: {fileID: 8170656751950170684, guid: 5abfcc63ccdd3ae4686d74d259064f7e,
+    type: 3}
 --- !u!136 &6572955426381327996
 CapsuleCollider:
   m_ObjectHideFlags: 0

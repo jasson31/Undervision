@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     AudioSource audioSource;
     private float distRate;
-
+    public GameObject redEffect;
 
     public void ChangeColor(VisionType _visionType)
     {
@@ -39,7 +39,9 @@ public class Enemy : MonoBehaviour
     public IEnumerator Illuminate()
     {
         yield return null;
-        //Illuminate
+        float rad = Random.Range(-20f, 20f) * Mathf.PI / 180f + Mathf.Atan2(transform.position.z, transform.position.x);
+        Vector3 redEffectPos = new Vector3(Mathf.Cos(rad) * 19.5f, 0, Mathf.Sin(rad) * 19.5f);
+        redEffect = Instantiate(redEffect, redEffectPos + new Vector3(0, Random.Range(5, 8), 0), Quaternion.identity);
     }
 
     public IEnumerator Vibrate()
@@ -93,6 +95,7 @@ public class Enemy : MonoBehaviour
     }
     public void Killed()
     {
+        if (visionType == VisionType.Red) Destroy(redEffect);
         Destroy(gameObject);
     }
 }

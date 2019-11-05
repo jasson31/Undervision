@@ -119,6 +119,8 @@ MonoBehaviour:
   - {fileID: 8754592244018361928}
   hp: 0
   audioSource: {fileID: 759224403243279207}
+  redEffect: {fileID: 8170656751950170684, guid: 5abfcc63ccdd3ae4686d74d259064f7e,
+    type: 3}
 --- !u!82 &759224403243279207
 AudioSource:
   m_ObjectHideFlags: 0
