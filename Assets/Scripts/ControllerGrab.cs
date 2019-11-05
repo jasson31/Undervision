@@ -47,6 +47,7 @@ public class ControllerGrab : MonoBehaviour
                 }
             }
         }
+        collidingObject.GetComponent<Outline>().enabled = false;
     }
     public void DropObject()
     {
@@ -62,6 +63,7 @@ public class ControllerGrab : MonoBehaviour
         if(!grabbingObject && collidingCand.Count > 0)
         {
             collidingObject = collidingCand[0];
+            collidingObject.GetComponent<Outline>().enabled = true;
         }
         if(grabButton.GetLastStateDown(input))
         {
@@ -72,6 +74,7 @@ public class ControllerGrab : MonoBehaviour
                 if (otherHand.grabbingObject == grabbingObject) otherHand.DropObject();
                 collidingObject = null;
                 collidingCand.Clear();
+                grabbingObject.GetComponent<Outline>().enabled = false;
                 conModel.SetActive(false);
             }
             else

@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 941799850725665861}
   - component: {fileID: 941799850725665867}
   - component: {fileID: 7055711348464280282}
+  - component: {fileID: -2000628832974134186}
   m_Layer: 8
   m_Name: Panel_1_1
   m_TagString: Grabbable
@@ -177,6 +178,24 @@ MonoBehaviour:
   - {fileID: 7067610066612557864}
   - {fileID: 7067610064915409588}
   - {fileID: 7067610066048176730}
+--- !u!114 &-2000628832974134186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067610064981823225}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0.7921569, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7067610065545104423
 GameObject:
   m_ObjectHideFlags: 0
