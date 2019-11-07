@@ -46,16 +46,14 @@ public class GunBehavior : GrabbableObject
             previousTriggeredTime = Time.time;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        SetTable();
     }
-
     // Update is called once per frame
     void Update()
     {
+        ToTable();
         if (Input.GetKeyDown(KeyCode.D))
         {
             if (Time.time - previousTriggeredTime > triggerDelay && !isReloading)

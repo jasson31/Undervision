@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PanelBehavior : GrabbableObject
 {
+    private void Update()
+    {
+        ToTable();
+    }
+    private void Start()
+    {
+        SetTable();
+    }
     public override void HairTrigger()
     {
         

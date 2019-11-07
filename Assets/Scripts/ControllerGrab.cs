@@ -8,6 +8,7 @@ public class ControllerGrab : MonoBehaviour
     public SteamVR_Input_Sources input;
     public SteamVR_Action_Boolean grabButton;
     public SteamVR_Action_Boolean hairButton;
+    public SteamVR_Action_Boolean tableSetButton;
     public GameObject conModel;
     public ControllerGrab otherHand;
 
@@ -16,8 +17,10 @@ public class ControllerGrab : MonoBehaviour
     public GameObject grabbingObject;
     [SerializeField]
     List<GameObject> collidingCand;
+    Transform tableTransform;
     private void Start()
     {
+        tableTransform = GameObject.Find("Table").transform;
         collidingCand = new List<GameObject>();
         collidingObject = null;
         grabbingObject = null;
@@ -65,7 +68,11 @@ public class ControllerGrab : MonoBehaviour
     }
     private void Update()
     {
-        if(!grabbingObject && collidingCand.Count > 0)
+        if (tableSetButton.GetLastState(otherHand.input) && tableSetButton.GetLastStateDown(input))
+        {
+            tableTransform.position += new Vector3(0,transform.position.y - tableTransform.position.y,0);
+        }
+        if (!grabbingObject && collidingCand.Count > 0)
         {
             collidingObject = collidingCand[0];
             collidingObject.GetComponent<Outline>().enabled = true;

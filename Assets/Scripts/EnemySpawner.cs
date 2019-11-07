@@ -97,11 +97,16 @@ public class EnemySpawner : MonoBehaviour
     {
         List<VisionType> enableType = new List<VisionType>();
         List<VisionType> disableType = new List<VisionType>();
+        List<PanelType> panelCand = new List<PanelType>();
 
         enableType.Add(VisionType.White);
         disableType.Add(VisionType.Red);
         disableType.Add(VisionType.Green);
         disableType.Add(VisionType.Blue);
+
+        panelCand.Add(PanelType.Long);
+        panelCand.Add(PanelType.Normal);
+        panelCand.Add(PanelType.Normal);
 
         int stage = 0;
         float delay = initialDelay;
@@ -141,7 +146,10 @@ public class EnemySpawner : MonoBehaviour
                 VisionType newVision = disableType[Random.Range(0, disableType.Count)];
                 disableType.Remove(newVision);
                 enableType.Add(newVision);
-                SpawnPanel(PanelType.Normal, newVision);
+
+                int pTmp = Random.Range(0, panelCand.Count);
+                SpawnPanel(panelCand[pTmp], newVision);
+                panelCand.RemoveAt(pTmp);
             }
             StartCoroutine(StageTextShow(stage));
             yield return new WaitForSeconds(6f);
