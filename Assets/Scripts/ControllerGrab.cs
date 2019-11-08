@@ -17,10 +17,8 @@ public class ControllerGrab : MonoBehaviour
     public GameObject grabbingObject;
     [SerializeField]
     List<GameObject> collidingCand;
-    Transform tableTransform;
     private void Start()
     {
-        tableTransform = GameObject.Find("Table").transform;
         collidingCand = new List<GameObject>();
         collidingObject = null;
         grabbingObject = null;
@@ -70,7 +68,7 @@ public class ControllerGrab : MonoBehaviour
     {
         if (tableSetButton.GetLastState(otherHand.input) && tableSetButton.GetLastStateDown(input))
         {
-            tableTransform.position += new Vector3(0,transform.position.y - tableTransform.position.y,0);
+            GameManager.inst.table.transform.position += new Vector3(0,transform.position.y - GameManager.inst.table.transform.position.y,0);
         }
         if (!grabbingObject && collidingCand.Count > 0)
         {

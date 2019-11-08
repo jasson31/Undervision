@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class GameManager : SingletonBehaviour<GameManager>
 {
+    public GameObject table, leftH, rightH, outerWall;
     public Enemy Drone, Golem, Skull;
     public Panel Normal, Long;
     public Transform toolSpawnBox;
     public Transform player;
-    public List<GameObject> enemys;
+    public List<GameObject> enemies;
+    public Enemy closestGreenEnemy;
     public static float enemySpawnDist = 22;
     public bool gameOver;
 
@@ -69,8 +71,7 @@ public class EnemySpawner : MonoBehaviour
         temp.transform.position = new Vector3(Mathf.Sin(rad) * dist, _enemyType == EnemyType.Drone ? 5 : 0, Mathf.Cos(rad) * dist);
         temp.ChangeColor(_visionType);
         temp.player = player;
-        temp.spawner = this;
-        enemys.Add(temp.gameObject);
+        enemies.Add(temp.gameObject);
         return temp;
     }
 
@@ -136,7 +137,7 @@ public class EnemySpawner : MonoBehaviour
                     yield return new WaitForSeconds(tDelay);
                 }
             }
-            while (enemys.Count > 0) yield return null;
+            while (enemies.Count > 0) yield return null;
             ++stage;
             enemyNum += enemyIncByStage;
             delay = Mathf.Max(initialDelay - delayDecByStage * stage, delayMin);
@@ -157,20 +158,24 @@ public class EnemySpawner : MonoBehaviour
     }
     public void EnemyDead(GameObject g)
     {
-        if (enemys.Contains(g)) enemys.Remove(g);
+        if (enemies.Contains(g)) enemies.Remove(g);
     }
 
     public void GameOver()
     {
         gameOver = true;
         StopCoroutine(playCoroutine);
-        foreach (GameObject g in enemys) g.GetComponent<Enemy>().GameOver();
+        foreach (GameObject g in enemies) g.GetComponent<Enemy>().GameOver();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        enemys = new List<GameObject>();
+        enemies = new List<GameObject>();
+        table = GameObject.Find("Table");
+        leftH = GameObject.Find("Controller (left)");
+        rightH = GameObject.Find("Controller (right)");
+        outerWall = GameObject.Find("OuterWall");
         playCoroutine = StartCoroutine(Stage());
     }
 

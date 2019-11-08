@@ -693,7 +693,6 @@ MonoBehaviour:
   hearts:
   - {fileID: 390763240326775954}
   - {fileID: 6264701039311762549}
-  spawner: {fileID: 0}
   hp: 0
   audioSource: {fileID: 5031610570359572261}
   redEffect: {fileID: 8170656751950170684, guid: 5abfcc63ccdd3ae4686d74d259064f7e,
@@ -747,7 +746,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0

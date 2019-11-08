@@ -10,7 +10,7 @@ public class PanelBehavior : GrabbableObject
     }
     private void Start()
     {
-        SetTable();
+
     }
     public override void HairTrigger()
     {

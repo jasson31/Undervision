@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     public VisionType visionType;
     public EnemyType enemyType;
     public GameObject[] hearts;
-    public EnemySpawner spawner;
     [SerializeField]
     int hp;
     [SerializeField]
@@ -32,16 +31,15 @@ public class Enemy : MonoBehaviour
         visionType = _visionType;
         switch (_visionType)
         {
-            case VisionType.Red: StartCoroutine(Illuminate()); break;
+            case VisionType.Red: Illuminate(); break;
             case VisionType.Green: StartCoroutine(Vibrate()); break;
-            case VisionType.Blue: StartCoroutine(Roar()); break;
+            case VisionType.Blue: Roar(); break;
             default: break;
         }
     }
 
-    public IEnumerator Illuminate()
+    public void Illuminate()
     {
-        yield return null;
         float rad = Random.Range(-20f, 20f) * Mathf.PI / 180f + Mathf.Atan2(transform.position.z, transform.position.x);
         Vector3 redEffectPos = new Vector3(Mathf.Cos(rad) * 19.5f, 0, Mathf.Sin(rad) * 19.5f);
         redEffect = Instantiate(redEffect, redEffectPos + new Vector3(0, Random.Range(5, 8), 0), Quaternion.identity);
@@ -52,19 +50,18 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             yield return null;
-            hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, SteamVR_Input_Sources.LeftHand);
-            hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, SteamVR_Input_Sources.RightHand);
+            if (GameManager.inst.gameOver) break;
+            else if(GameManager.inst.closestGreenEnemy == this)
+            {
+                SteamVR_Input_Sources vibrateHand = transform.position.x > 0 ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
+                hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, vibrateHand);
+            }
         }
     }
 
-    public IEnumerator Roar()
+    public void Roar()
     {
         audioSource.Play();
-        while (true)
-        {
-            yield return null;
-            audioSource.volume = distRate / 2;
-        }
     }
 
     private void Start()
@@ -74,25 +71,31 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (!spawner.gameOver)
+        if (!GameManager.inst.gameOver)
         {
             if (enemyType == EnemyType.Drone)
             {
-                transform.position = transform.position - Vector3.Normalize(transform.position - player.position) * speed;
+                transform.Translate(Vector3.Normalize(player.position - transform.position) * speed, Space.World);
                 transform.LookAt(player);
             }
             else
             {
-                transform.Translate(Vector3.Normalize(transform.position - player.position) * speed);
+                transform.Translate(Vector3.Normalize(player.position - transform.position) * speed, Space.World);
                 transform.LookAt(player);
                 transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
             }
-            distRate = 1 - Vector3.Distance(player.position, transform.position) / EnemySpawner.enemySpawnDist;
+            if(visionType == VisionType.Green)
+            {
+                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, player.transform.position)
+                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, player.transform.position))
+                GameManager.inst.closestGreenEnemy = this;
+            }
+            distRate = 1 - Vector3.Distance(player.position, transform.position) / GameManager.enemySpawnDist;
         }
     }
     public void Damaged()
     {
-        if (!spawner.gameOver)
+        if (!GameManager.inst.gameOver)
         {
             hp--;
             for (int i = hp; i < hearts.Length; i++)
@@ -105,7 +108,7 @@ public class Enemy : MonoBehaviour
     public void Killed()
     {
         if (visionType == VisionType.Red) Destroy(redEffect);
-        spawner.EnemyDead(gameObject);
+        GameManager.inst.EnemyDead(gameObject);
         Destroy(gameObject);
     }
     public void GameOver()

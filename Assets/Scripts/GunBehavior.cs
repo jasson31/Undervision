@@ -48,7 +48,7 @@ public class GunBehavior : GrabbableObject
     }
     private void Start()
     {
-        SetTable();
+
     }
     // Update is called once per frame
     void Update()
