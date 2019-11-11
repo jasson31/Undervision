@@ -41,6 +41,7 @@ public class GameManager : SingletonBehaviour<GameManager>
                 Debug.LogError("Invalid Enemy Type of " + _panelType);
                 return null;
         }
+        toolSpawnBox.position = new Vector3(player.position.x, toolSpawnBox.position.y, player.position.z + 0.2f);
         temp.transform.position = new Vector3(
             Random.Range(toolSpawnBox.position.x - toolSpawnBox.localScale.x / 2, toolSpawnBox.position.x + toolSpawnBox.localScale.x / 2),
             Random.Range(toolSpawnBox.position.y - toolSpawnBox.localScale.y / 2, toolSpawnBox.position.y + toolSpawnBox.localScale.y / 2),

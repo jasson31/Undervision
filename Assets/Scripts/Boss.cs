@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossPhase1 : Enemy
+public class Boss : Enemy
 {
 
     void Start()
