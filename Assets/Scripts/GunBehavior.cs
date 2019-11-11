@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunBehavior : GrabbableObject
 {
+    public AudioClip fire, reload;
     public Animator animator;
     public Transform firePoint;
     public GameObject bullet;
@@ -19,7 +20,7 @@ public class GunBehavior : GrabbableObject
         newBullet.GetComponent<Rigidbody>().velocity = firePoint.up.normalized * bulletSpeed;
         bullets--;
         animator.SetTrigger("Fire");
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(fire);
         Destroy(newBullet, 10);
     }
 
@@ -27,6 +28,7 @@ public class GunBehavior : GrabbableObject
     {
         isReloading = true;
         animator.SetTrigger("Reload");
+        GetComponent<AudioSource>().PlayOneShot(reload);
         yield return new WaitForSeconds(1);
         bullets = 6;
         isReloading = false;

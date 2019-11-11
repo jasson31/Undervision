@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     AudioSource audioSource;
     private float distRate;
     public GameObject redEffect;
+    private Coroutine vibrationCoroutine;
 
     public void ChangeColor(VisionType _visionType)
     {
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
         switch (_visionType)
         {
             case VisionType.Red: Illuminate(); break;
-            case VisionType.Green: StartCoroutine(Vibrate()); break;
+            case VisionType.Green: vibrationCoroutine = StartCoroutine(Vibrate()); break;
             case VisionType.Blue: Roar(); break;
             default: break;
         }
@@ -115,9 +116,20 @@ public class Enemy : MonoBehaviour
     {
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
-            r.material.SetInt("_MaskType", 0);
+            r.material.SetInt("_StencilComp", 0);
         }
         if (GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
         if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
+        switch (visionType)
+        {
+            case VisionType.Red:
+                break;
+            case VisionType.Green:
+                StopCoroutine(vibrationCoroutine);
+                break;
+            case VisionType.Blue:
+                audioSource.Stop();
+                break;
+        }
     }
 }
