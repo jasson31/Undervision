@@ -7,7 +7,6 @@ using Valve.VR.InteractionSystem;
 public class Enemy : MonoBehaviour
 {
     public SteamVR_Action_Vibration hapticAction;
-    public Transform player;
     public float speed;
     public VisionType visionType;
     public EnemyType enemyType;
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
     private float distRate;
     public GameObject redEffect;
 
-    public void ChangeColor(VisionType _visionType)
+    public virtual void ChangeColor(VisionType _visionType)
     {
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
@@ -75,25 +74,25 @@ public class Enemy : MonoBehaviour
         {
             if (enemyType == EnemyType.Drone)
             {
-                transform.Translate(Vector3.Normalize(player.position - transform.position) * speed, Space.World);
-                transform.LookAt(player);
+                transform.Translate(Vector3.Normalize(GameManager.inst.player.position - transform.position) * speed, Space.World);
+                transform.LookAt(GameManager.inst.player);
             }
             else
             {
-                transform.Translate(Vector3.Normalize(player.position - transform.position) * speed, Space.World);
-                transform.LookAt(player);
+                transform.Translate(Vector3.Normalize(GameManager.inst.player.position - transform.position) * speed, Space.World);
+                transform.LookAt(GameManager.inst.player);
                 transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
             }
             if(visionType == VisionType.Green)
             {
-                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, player.transform.position)
-                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, player.transform.position))
+                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, GameManager.inst.player.transform.position)
+                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, GameManager.inst.player.transform.position))
                 GameManager.inst.closestGreenEnemy = this;
             }
-            distRate = 1 - Vector3.Distance(player.position, transform.position) / GameManager.enemySpawnDist;
+            distRate = 1 - Vector3.Distance(GameManager.inst.player.position, transform.position) / GameManager.enemySpawnDist;
         }
     }
-    public void Damaged()
+    public virtual void Damaged()
     {
         if (!GameManager.inst.gameOver)
         {
@@ -105,7 +104,7 @@ public class Enemy : MonoBehaviour
             if (hp <= 0) Killed();
         }
     }
-    public void Killed()
+    public virtual void Killed()
     {
         if (visionType == VisionType.Red) Destroy(redEffect);
         GameManager.inst.EnemyDead(gameObject);

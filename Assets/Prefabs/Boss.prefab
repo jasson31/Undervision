@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8197138020313374396}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6332003840092492204}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8535744675421505108}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5551966030205104884}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1642513341707306717}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8026518398189837197}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 340810219969972765}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8689267472096203671}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Ponytail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3653696869529967773}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Ponytail1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7383673418019550611}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4970290559105844306}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4419884734815919222}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214084808602692784}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 785749787679485949}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6617916094939172472}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3484356856914345459}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1241739282196507658}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3769112878991953272}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7107004276155681792}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6259721824826339059}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4114260463080484899}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6482018933675910591}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8572054025683520462}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7643879299194386703}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7076955114238530644}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4644871801572215851}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Toe0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8473077456607920951}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317817745182564269}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,8 @@ GameObject:
   - component: {fileID: 3939528641071951222}
   - component: {fileID: 3939528641071951223}
   - component: {fileID: 3939528641071951221}
-  m_Layer: 0
+  - component: {fileID: 1155851719}
+  m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +898,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3939528641071951217}
-  m_LocalRotation: {x: -0, y: 0.9958398, z: -0, w: 0.09112212}
+  m_LocalRotation: {x: 0, y: 0.99584, z: 0, w: 0.09111927}
   m_LocalPosition: {x: 0, y: 0, z: 6.03}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -955,6 +956,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1155851719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939528641071951217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f85eea411171844da99d4d716001d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hapticAction:
+    actionPath: 
+    needsReinit: 0
+  speed: 0
+  visionType: 0
+  enemyType: 0
+  hearts: []
+  hp: 0
+  audioSource: {fileID: 0}
+  redEffect: {fileID: 0}
+  speedInc: 0.0001
+  crystals:
+  - {fileID: 3064054405800290404}
+  - {fileID: 3064054403937302279}
+  - {fileID: 3064054404652614296}
+  - {fileID: 3064054403822651500}
+  - {fileID: 3064054405077737287}
+  - {fileID: 3064054404273186621}
 --- !u!1 &4606910884573417532
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6227464142133884988}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +1026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6547642539168704226}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1026,7 +1057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1900129966554136202}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Footsteps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112531732270525200}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1087,7 +1118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3205100334600893153}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger4Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1118,7 +1149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3273111426062288926}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 575972363288718976}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1181,7 +1212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4109625151944494779}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856382092576841925}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1243,7 +1274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553901918910846131}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,7 +1309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3896736605714749413}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430168236094753357}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1341,7 +1372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4696470111811613695}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530220374615561314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1403,7 +1434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4146323295499390886}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7307394906822027223}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6006995218363616462}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1500,7 +1531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4247547300473879517}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1532,7 +1563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6175677833636207216}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2346254528972580226}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1598,7 +1629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 934925432302949089}
   - component: {fileID: 5286751479335688311}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ice Golem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1723,7 +1754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8320324095636566489}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,7 +1785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4463892883539072140}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1784,7 +1815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2179374906329299647}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1815,7 +1846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6924912329443534177}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Spine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1846,7 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3830856451671728011}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916673199021427766}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1907,7 +1938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3499820796984886226}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger4Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1937,7 +1968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2573333300613655179}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1970,7 +2001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8362439101228195261}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2001,7 +2032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2279844246495872347}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 HeadNub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2031,7 +2062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9217327335951023520}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Toe0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2061,7 +2092,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7897280270208312546}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bip001 L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2094,6 +2125,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293029025492, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
         type: 3}
@@ -2165,6 +2201,41 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.10000013
       objectReference: {fileID: 0}
+    - target: {fileID: 9159706292066591175, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292865528961, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293119906360, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706291612197436, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292436560958, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293207227610, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293450095855, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41dc07172695b0741ae170985f81211c, type: 3}
 --- !u!4 &4165623896034576701 stripped
@@ -2173,6 +2244,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5103304652718522350}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3064054405800290404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7806745537990940554, guid: 41dc07172695b0741ae170985f81211c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5103304652718522350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870bee035efaf0040a9c47d14a9545cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5103304653038274765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2184,6 +2267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293029025492, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
         type: 3}
@@ -2255,8 +2343,55 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1000002
       objectReference: {fileID: 0}
+    - target: {fileID: 9159706292066591175, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292865528961, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293119906360, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706291612197436, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292436560958, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293207227610, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293450095855, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41dc07172695b0741ae170985f81211c, type: 3}
+--- !u!114 &3064054405077737287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7806745537990940554, guid: 41dc07172695b0741ae170985f81211c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5103304653038274765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870bee035efaf0040a9c47d14a9545cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4165623895280746014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
@@ -2274,6 +2409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293029025492, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
         type: 3}
@@ -2345,8 +2485,55 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.100000136
       objectReference: {fileID: 0}
+    - target: {fileID: 9159706292066591175, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292865528961, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293119906360, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706291612197436, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292436560958, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293207227610, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293450095855, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41dc07172695b0741ae170985f81211c, type: 3}
+--- !u!114 &3064054404652614296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7806745537990940554, guid: 41dc07172695b0741ae170985f81211c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5103304653728814354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870bee035efaf0040a9c47d14a9545cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4165623894859654081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
@@ -2364,6 +2551,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293029025492, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
         type: 3}
@@ -2435,8 +2627,55 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.10000007
       objectReference: {fileID: 0}
+    - target: {fileID: 9159706292066591175, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292865528961, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293119906360, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706291612197436, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292436560958, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293207227610, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293450095855, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41dc07172695b0741ae170985f81211c, type: 3}
+--- !u!114 &3064054404273186621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7806745537990940554, guid: 41dc07172695b0741ae170985f81211c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5103304653844279479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870bee035efaf0040a9c47d14a9545cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4165623895012656740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
@@ -2454,6 +2693,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293029025492, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
         type: 3}
@@ -2525,6 +2769,41 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1000002
       objectReference: {fileID: 0}
+    - target: {fileID: 9159706292066591175, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292865528961, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293119906360, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706291612197436, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292436560958, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293207227610, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293450095855, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41dc07172695b0741ae170985f81211c, type: 3}
 --- !u!4 &4165623894598052149 stripped
@@ -2533,6 +2812,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5103304654557732838}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3064054403822651500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7806745537990940554, guid: 41dc07172695b0741ae170985f81211c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5103304654557732838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870bee035efaf0040a9c47d14a9545cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5103304654582161549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2544,6 +2835,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293029025492, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9159706293029025491, guid: 41dc07172695b0741ae170985f81211c,
         type: 3}
@@ -2615,6 +2911,41 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.100000076
       objectReference: {fileID: 0}
+    - target: {fileID: 9159706292066591175, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292865528961, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293119906360, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706291612197436, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706292436560958, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293207227610, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159706293450095855, guid: 41dc07172695b0741ae170985f81211c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41dc07172695b0741ae170985f81211c, type: 3}
 --- !u!4 &4165623894676346462 stripped
@@ -2623,3 +2954,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5103304654582161549}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3064054403937302279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7806745537990940554, guid: 41dc07172695b0741ae170985f81211c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5103304654582161549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870bee035efaf0040a9c47d14a9545cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

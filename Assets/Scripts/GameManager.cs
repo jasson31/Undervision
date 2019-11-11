@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public GameObject table, leftH, rightH, outerWall;
-    public Enemy Drone, Golem, Skull;
+    public Enemy Drone, Golem, Skull, Boss;
     public Panel Normal, Long;
     public Transform toolSpawnBox;
     public Transform player;
@@ -41,7 +41,7 @@ public class GameManager : SingletonBehaviour<GameManager>
                 Debug.LogError("Invalid Enemy Type of " + _panelType);
                 return null;
         }
-        toolSpawnBox.position = new Vector3(player.position.x, toolSpawnBox.position.y, player.position.z + 0.2f);
+        toolSpawnBox.position = new Vector3(player.position.x, toolSpawnBox.position.y, player.position.z + 0.3f);
         temp.transform.position = new Vector3(
             Random.Range(toolSpawnBox.position.x - toolSpawnBox.localScale.x / 2, toolSpawnBox.position.x + toolSpawnBox.localScale.x / 2),
             Random.Range(toolSpawnBox.position.y - toolSpawnBox.localScale.y / 2, toolSpawnBox.position.y + toolSpawnBox.localScale.y / 2),
@@ -71,7 +71,6 @@ public class GameManager : SingletonBehaviour<GameManager>
         float rad = degrees * Mathf.PI / 180f;
         temp.transform.position = new Vector3(Mathf.Sin(rad) * dist, _enemyType == EnemyType.Drone ? 5 : 0, Mathf.Cos(rad) * dist);
         temp.ChangeColor(_visionType);
-        temp.player = player;
         enemies.Add(temp.gameObject);
         return temp;
     }
@@ -116,6 +115,13 @@ public class GameManager : SingletonBehaviour<GameManager>
         int enemyNum = initialEnemy;
         float angle = initialAngle;
 
+        //fortest
+
+        Instantiate(Boss);
+        SpawnPanel(PanelType.Normal, VisionType.Blue);
+        SpawnPanel(PanelType.Normal, VisionType.Green);
+        SpawnPanel(PanelType.Normal, VisionType.Red);
+        yield return new WaitForSeconds(500f);
         //스테이지 0 안내
         StartCoroutine(StageTextShow(0));
         yield return new WaitForSeconds(5f);

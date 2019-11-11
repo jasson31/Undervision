@@ -4,15 +4,166 @@ using UnityEngine;
 
 public class BossCrystal : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject crystalHeart;
+    public GameObject cover;
+    public GameObject spherePrefab;
+    public GameObject linePrefab;
+    public int maxHP;
+    public Boss boss;
+    public int currHP;
+    bool dest;
+    Vector3 heartScale, coverScale;
+    VisionType currentColor;
+    public Coroutine actCor;
+    Collider coll;
+    List<Balloon> balloons;
+
+    public class Balloon
     {
-        
+        public GameObject sphere;
+        public GameObject line;
+        BossCrystal crystal;
+        public Balloon(GameObject sp, GameObject lp, BossCrystal _crystal)
+        {
+            sphere = Instantiate(sp);
+            line = Instantiate(lp);
+            crystal = _crystal;
+            sphere.GetComponent<BossSphere>().balloon = this;
+        }
+
+        public void ChangeColor(VisionType _visionType)
+        {
+            Renderer r = sphere.GetComponent<Renderer>();
+            r.material.SetInt("_MaskType", (int)_visionType);
+            r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            r.material.SetInt("_StencilComp", 3);
+
+            r = line.GetComponent<LineRenderer>();
+            r.material.SetInt("_MaskType", (int)_visionType);
+            r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            r.material.SetInt("_StencilComp", 3);
+
+            sphere.GetComponent<Renderer>().enabled = true;
+            line.GetComponent<LineRenderer>().enabled = true;
+        }
+
+        public void LineConnect(Transform trns)
+        {
+            line.GetComponent<LineRenderer>().SetPositions(new Vector3[] { trns.position, sphere.transform.position });
+        }
+
+        public void Destroyed()
+        {
+            if (crystal.balloons.Contains(this)) crystal.balloons.Remove(this);
+            Destroy(sphere);
+            Destroy(line);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Damaged()
     {
-        
+        currHP = Mathf.Max(currHP-1, 0);
+        crystalHeart.transform.localScale = new Vector3(heartScale.x * currHP / maxHP, heartScale.y * currHP / maxHP, heartScale.z);
+        if(currHP == 0 && !dest)
+        {
+            dest = true;
+            Killed();
+        }
+    }
+
+    public override void Start()
+    {
+        balloons = new List<Balloon>();
+        coll = GetComponent<Collider>();
+        dest = false;
+        currHP = maxHP;
+        heartScale = crystalHeart.transform.localScale;
+        coverScale = cover.transform.localScale;
+        cover.SetActive(false);
+    }
+
+    public override void Killed()
+    {
+        boss.CrystalDestroyed(this);
+    }
+    
+    public void StartPhase(int balNum)
+    {
+        if(currHP > 0)
+        {
+            actCor = StartCoroutine(CrystalCoroutine(balNum));
+        }
+    }
+
+    public void EndPhase()
+    {
+        if (currHP > 0)
+        {
+            cover.SetActive(false);
+            coll.enabled = false;
+            foreach (Balloon b in balloons) b.Destroyed();
+            StopCoroutine(actCor);
+        }
+    }
+
+    public override void Update()
+    {
+        foreach (Balloon b in balloons) b.LineConnect(transform);
+    }
+
+    IEnumerator CrystalCoroutine(int balNum)
+    {
+        Renderer r;
+        int prevHP;
+
+        yield return new WaitForSeconds(2f);
+
+        while (currHP > 0)
+        {
+            currentColor = (VisionType)Random.Range(1, 4);
+            r = cover.GetComponent<Renderer>();
+            r.material.SetInt("_MaskType", 0);
+            r.material.SetColor("_Color", Constants.Vision_Color(currentColor));
+            r.material.SetInt("_StencilComp", 0);
+
+            cover.transform.localScale = Vector3.zero;
+            cover.SetActive(true);
+
+            for (float timer = 0; timer <= 0.5f; timer += Time.deltaTime)
+            {
+                cover.transform.localScale = new Vector3(coverScale.x * timer / 0.5f, coverScale.y * timer / 0.5f, coverScale.z);
+                yield return null;
+            }
+            cover.transform.localScale = coverScale;
+            balloons = new List<Balloon>();
+
+            for (int i = 0; i < balNum; i++)
+            {
+                Balloon b = new Balloon(spherePrefab, linePrefab, this);
+                float rad = (Random.Range(0, 2) == 0 ? Random.Range(-90f, -20f) : Random.Range(20f, 90f)) * Mathf.PI / 180f;
+                float dist = Random.Range(10, 19);
+                b.sphere.transform.position = new Vector3(Mathf.Sin(rad) * dist, Random.Range(5, 8), Mathf.Cos(rad) * dist);
+                b.ChangeColor(currentColor);
+                balloons.Add(b);
+            }
+
+            while (balloons.Count > 0) yield return null;
+
+            for (float timer = 0; timer <= 0.5f; timer += Time.deltaTime)
+            {
+                cover.transform.localScale = new Vector3(coverScale.x * (0.5f - timer) / 0.5f, coverScale.y * (0.5f - timer) / 0.5f, coverScale.z);
+                yield return null;
+            }
+            cover.SetActive(false);
+            coll.enabled = true;
+            prevHP = currHP;
+
+            for (float timer = 0; timer <= 30f; timer += Time.deltaTime)
+            {
+                if (prevHP - currHP >= maxHP / 2 || currHP <= 0) break;
+                yield return null;
+            }
+            coll.enabled = false;
+        }
     }
 }
