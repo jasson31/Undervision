@@ -19,6 +19,7 @@ public class GunBehavior : GrabbableObject
         newBullet.GetComponent<Rigidbody>().velocity = firePoint.up.normalized * bulletSpeed;
         bullets--;
         animator.SetTrigger("Fire");
+        GetComponent<AudioSource>().Play();
         Destroy(newBullet, 10);
     }
 

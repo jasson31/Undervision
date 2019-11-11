@@ -62,6 +62,7 @@ public class ControllerGrab : MonoBehaviour
             grabbingObject.GetComponent<Rigidbody>().isKinematic = false;
             grabbingObject = null;
             conModel.SetActive(true);
+            GetComponent<AudioSource>().Play();
         }
     }
     private void Update()
@@ -93,6 +94,7 @@ public class ControllerGrab : MonoBehaviour
             {
                 DropObject();
             }
+            GetComponent<AudioSource>().Play();
         }
         if(grabbingObject)
         {
