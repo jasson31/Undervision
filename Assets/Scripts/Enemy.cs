@@ -64,12 +64,12 @@ public class Enemy : MonoBehaviour
         audioSource.Play();
     }
 
-    private void Start()
+    protected void Start()
     {
         audioSource = GetComponent<AudioSource>();
         hp = hearts.Length;
     }
-    void Update()
+    protected void Update()
     {
         if (!GameManager.inst.gameOver)
         {
