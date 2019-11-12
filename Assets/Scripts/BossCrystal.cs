@@ -22,6 +22,7 @@ public class BossCrystal : Enemy
     {
         public GameObject sphere;
         public GameObject line;
+        public VisionType visionType;
         BossCrystal crystal;
         public Balloon(GameObject sp, GameObject lp, BossCrystal _crystal)
         {
@@ -33,14 +34,15 @@ public class BossCrystal : Enemy
 
         public void ChangeColor(VisionType _visionType)
         {
+            visionType = _visionType;
             Renderer r = sphere.GetComponent<Renderer>();
-            r.material.SetInt("_MaskType", (int)_visionType);
-            r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            r.material.SetInt("_MaskType", (int)visionType);
+            r.material.SetColor("_Color", Constants.Vision_Color(visionType));
             r.material.SetInt("_StencilComp", 3);
 
             r = line.GetComponent<LineRenderer>();
-            r.material.SetInt("_MaskType", (int)_visionType);
-            r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
+            r.material.SetInt("_MaskType", (int)visionType);
+            r.material.SetColor("_Color", Constants.Vision_Color(visionType));
             r.material.SetInt("_StencilComp", 3);
 
             sphere.GetComponent<Renderer>().enabled = true;
@@ -75,7 +77,8 @@ public class BossCrystal : Enemy
     {
         currHP = Mathf.Max(currHP-1, 0);
         crystalHeart.transform.localScale = new Vector3(heartScale.x * currHP / maxHP, heartScale.y * currHP / maxHP, heartScale.z);
-        if(currHP == 0 && !dest)
+        Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(new Color(1,0,0.8f));
+        if (currHP == 0 && !dest)
         {
             dest = true;
             Killed();

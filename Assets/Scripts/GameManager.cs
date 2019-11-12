@@ -9,6 +9,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     public Panel Normal, Long;
     public Transform toolSpawnBox;
     public Transform player;
+    public Transform floor;
+    public GameObject hitParticle;
     public List<GameObject> enemies;
     public Enemy closestGreenEnemy;
     public static float enemySpawnDist = 22;

@@ -97,6 +97,7 @@ public class Enemy : MonoBehaviour
         if (!GameManager.inst.gameOver)
         {
             hp--;
+            Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(visionType);
             for (int i = hp; i < hearts.Length; i++)
             {
                 hearts[i].SetActive(false);
