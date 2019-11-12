@@ -16,10 +16,11 @@ public abstract class GrabbableObject : MonoBehaviour
             GameManager.inst.rightH.GetComponent<ControllerGrab>().grabbingObject != gameObject)
         {
             disabled = true;
+            GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().useGravity = false;
             GetComponent<Collider>().enabled = false;
         }
-        else if(disabled && transform.position.y > GameManager.inst.table.transform.position.y + 0.2f)
+        else if(disabled && transform.position.y > GameManager.inst.table.transform.position.y + 0.5f)
         {
             disabled = false;
             GetComponent<Rigidbody>().useGravity = true;

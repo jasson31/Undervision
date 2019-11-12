@@ -113,4 +113,8 @@ public class Boss : Enemy
         if (GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
         if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
     }
+
+    public override void Damaged()
+    {
+    }
 }

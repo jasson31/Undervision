@@ -98,7 +98,6 @@ MonoBehaviour:
   hapticAction:
     actionPath: /actions/default/out/Haptic
     needsReinit: 0
-  player: {fileID: 0}
   speed: 0.02
   visionType: 0
   enemyType: 1
@@ -118,18 +117,18 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d366113567ca5f459e8c5d964faa3a8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4e75e4db431522246a9efeee0817cffb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 0.6808071
-  MaxDistance: 500
+  MinDistance: 5
+  MaxDistance: 25
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -290,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 8258008804317560767, guid: c1d5451cbcbcab54ca5714a9ac65da35,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8258008804317560767, guid: c1d5451cbcbcab54ca5714a9ac65da35,
         type: 3}
