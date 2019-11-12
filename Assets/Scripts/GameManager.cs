@@ -77,9 +77,30 @@ public class GameManager : SingletonBehaviour<GameManager>
         return temp;
     }
 
-    IEnumerator StageTextShow(int s)
+    public IEnumerator StageTextShow(string s, float f)
     {
-        stageText.text = "Stage " + s;
+        stageText.text = s;
+        for (float t = 0; t < 0.5; t += Time.deltaTime)
+        {
+            stageText.color = new Color(1, 1, 1, t * 2);
+            yield return null;
+        }
+        stageText.color = new Color(1, 1, 1, 1);
+
+        if (f < 0) yield break;
+
+        yield return new WaitForSeconds(f);
+
+        for (float t = 0; t < 2; t += Time.deltaTime)
+        {
+            stageText.color = new Color(1, 1, 1, 1 - t / 2);
+            yield return null;
+        }
+        stageText.color = new Color(1, 1, 1, 0);
+    }
+    public IEnumerator StageTextShow(string s)
+    {
+        stageText.text = s;
         for(float t = 0; t < 0.5; t += Time.deltaTime)
         {
             stageText.color = new Color(1, 1, 1, t * 2);
@@ -118,14 +139,9 @@ public class GameManager : SingletonBehaviour<GameManager>
         float angle = initialAngle;
 
         //fortest
-        
-        enemies.Add(Instantiate(Boss).gameObject);
-        SpawnPanel(PanelType.Normal, VisionType.Blue);
-        SpawnPanel(PanelType.Normal, VisionType.Green);
-        SpawnPanel(PanelType.Normal, VisionType.Red);
-        yield return new WaitForSeconds(500f);
+
         //스테이지 0 안내
-        StartCoroutine(StageTextShow(0));
+        StartCoroutine(StageTextShow("Stage 0"));
         yield return new WaitForSeconds(5f);
 
         while (true)
@@ -148,6 +164,8 @@ public class GameManager : SingletonBehaviour<GameManager>
             }
             while (enemies.Count > 0) yield return null;
             ++stage;
+            if (stage >= 5) break;
+
             enemyNum += enemyIncByStage;
             delay = Mathf.Max(initialDelay - delayDecByStage * stage, delayMin);
             angle = Mathf.Min(angle + angleIncByStage, angleMax);
@@ -161,9 +179,12 @@ public class GameManager : SingletonBehaviour<GameManager>
                 SpawnPanel(panelCand[pTmp], newVision);
                 panelCand.RemoveAt(pTmp);
             }
-            StartCoroutine(StageTextShow(stage));
+            StartCoroutine(StageTextShow("Stage " + stage));
             yield return new WaitForSeconds(6f);
         }
+        StartCoroutine(StageTextShow("Boss Stage"));
+        yield return new WaitForSeconds(6f);
+        enemies.Add(Instantiate(Boss).gameObject);
     }
     public void EnemyDead(GameObject g)
     {

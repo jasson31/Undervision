@@ -978,7 +978,7 @@ MonoBehaviour:
   hp: 0
   audioSource: {fileID: 0}
   redEffect: {fileID: 0}
-  speedInc: 0.001
+  speedInc: 0.002
   crystals:
   - {fileID: 3064054405800290404}
   - {fileID: 3064054403937302279}

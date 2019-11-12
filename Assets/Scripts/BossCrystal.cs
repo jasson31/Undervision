@@ -77,7 +77,7 @@ public class BossCrystal : Enemy
     {
         currHP = Mathf.Max(currHP-1, 0);
         crystalHeart.transform.localScale = new Vector3(heartScale.x * currHP / maxHP, heartScale.y * currHP / maxHP, heartScale.z);
-        Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(new Color(1,0,0.8f));
+        Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(new Color(1, 0, 0.8f));
         if (currHP == 0 && !dest)
         {
             dest = true;
@@ -98,6 +98,7 @@ public class BossCrystal : Enemy
 
     public override void Killed()
     {
+        gameObject.SetActive(false);
         boss.CrystalDestroyed(this);
     }
     
@@ -116,7 +117,7 @@ public class BossCrystal : Enemy
             StopCoroutine(actCor);
             cover.SetActive(false);
             coll.enabled = false;
-            foreach (Balloon b in balloons) b.Destroyed();
+            while (balloons.Count > 0) balloons[0].Destroyed();
         }
     }
 
@@ -129,6 +130,8 @@ public class BossCrystal : Enemy
     {
         Renderer r;
         int prevHP;
+
+        coll.enabled = false;
 
         yield return new WaitForSeconds(2f);
 
@@ -155,7 +158,7 @@ public class BossCrystal : Enemy
             {
                 Balloon b = new Balloon(spherePrefab, linePrefab, this);
                 float rad = (Random.Range(0, 2) == 0 ? Random.Range(-90f, -20f) : Random.Range(20f, 90f)) * Mathf.PI / 180f;
-                float dist = Random.Range(10, 19);
+                float dist = Random.Range(6, 19);
                 b.sphere.transform.position = new Vector3(Mathf.Sin(rad) * dist, Random.Range(5, 8), Mathf.Cos(rad) * dist);
                 b.ChangeColor(currentColor);
                 balloons.Add(b);
@@ -172,9 +175,9 @@ public class BossCrystal : Enemy
             coll.enabled = true;
             prevHP = currHP;
 
-            for (float timer = 0; timer <= 7f; timer += Time.deltaTime)
+            for (float timer = 0; timer <= 9 - balNum * 2; timer += Time.deltaTime)
             {
-                if (prevHP - currHP >= maxHP / 2 || currHP <= 0) break;
+                //if (prevHP - currHP >= maxHP / 2 + 1 || currHP <= 0) break;
                 yield return null;
             }
             coll.enabled = false;

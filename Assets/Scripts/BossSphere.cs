@@ -7,7 +7,7 @@ public class BossSphere : Enemy
     public BossCrystal.Balloon balloon;
     public override void Damaged()
     {
-        Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(balloon.visionType);
+        Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(visionType);
         balloon.Destroyed();
     }
 

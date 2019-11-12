@@ -52,11 +52,10 @@ public class Boss : Enemy
             speed = (crystals.Length - clCryst + 2) / 2f * speedInc;
             anit.SetFloat("speed", speed * 50);
 
-            StartCoroutine(BossPatern());
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
             {
                 r.material.SetInt("_MaskType", 0);
-                r.material.SetColor("_Color", new Color(0.25f * (crystals.Length - clCryst) / 2f, 0, 0));
+                r.material.SetColor("_Color", new Color(1f, 1f - 0.25f * (crystals.Length - clCryst) / 2f, 1f - 0.25f * (crystals.Length - clCryst) / 2f));
                 r.material.SetInt("_StencilComp", 0);
                 if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0f, 0.8f));
             }
@@ -65,6 +64,14 @@ public class Boss : Enemy
 
             int befCryst = clCryst;
             while (clCryst > befCryst - 2) yield return null;
+
+            if(clCryst <= 0 )
+            {
+                GameManager.inst.gameOver = true;
+                StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1));
+                anit.SetTrigger("death");
+                yield break;
+            }
 
             foreach (BossCrystal b in crystals) b.EndPhase();
 

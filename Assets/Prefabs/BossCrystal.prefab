@@ -358,7 +358,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 0.5}
+  m_Size: {x: 1.5, y: 1.5, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7806745537990940554
 MonoBehaviour:
@@ -388,7 +388,7 @@ MonoBehaviour:
     type: 3}
   linePrefab: {fileID: 9196905962541295779, guid: ba131261b31da4c4c935d18ad1af29aa,
     type: 3}
-  maxHP: 10
+  maxHP: 8
   boss: {fileID: 0}
   currHP: 0
 --- !u!1 &9159706293119906360
