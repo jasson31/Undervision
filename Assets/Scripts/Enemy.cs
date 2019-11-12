@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
             r.material.SetInt("_MaskType", (int)_visionType);
             r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
             if(_visionType == VisionType.White) r.material.SetInt("_StencilComp", 0);
-            if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0.75f, 0.8f));
+            if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0f, 0.8f));
         }
         visionType = _visionType;
         switch (_visionType)
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         GameManager.inst.EnemyDead(gameObject);
         Destroy(gameObject);
     }
-    public void GameOver()
+    public virtual void GameOver()
     {
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {

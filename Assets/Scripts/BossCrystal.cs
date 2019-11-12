@@ -47,6 +47,17 @@ public class BossCrystal : Enemy
             line.GetComponent<LineRenderer>().enabled = true;
         }
 
+        public void GameOver()
+        {
+            Renderer r = sphere.GetComponent<Renderer>();
+            r.material.SetInt("_MaskType", 0);
+            r.material.SetInt("_StencilComp", 0);
+
+            r = line.GetComponent<LineRenderer>();
+            r.material.SetInt("_MaskType", 0);
+            r.material.SetInt("_StencilComp", 0);
+        }
+
         public void LineConnect(Transform trns)
         {
             line.GetComponent<LineRenderer>().SetPositions(new Vector3[] { trns.position, sphere.transform.position });
@@ -99,10 +110,10 @@ public class BossCrystal : Enemy
     {
         if (currHP > 0)
         {
+            StopCoroutine(actCor);
             cover.SetActive(false);
             coll.enabled = false;
             foreach (Balloon b in balloons) b.Destroyed();
-            StopCoroutine(actCor);
         }
     }
 
@@ -158,12 +169,17 @@ public class BossCrystal : Enemy
             coll.enabled = true;
             prevHP = currHP;
 
-            for (float timer = 0; timer <= 30f; timer += Time.deltaTime)
+            for (float timer = 0; timer <= 7f; timer += Time.deltaTime)
             {
                 if (prevHP - currHP >= maxHP / 2 || currHP <= 0) break;
                 yield return null;
             }
             coll.enabled = false;
         }
+    }
+    public override void GameOver()
+    {
+        if (currHP > 0) StopCoroutine(actCor);
+        foreach (Balloon b in balloons) b.GameOver();
     }
 }

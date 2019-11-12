@@ -116,8 +116,8 @@ public class GameManager : SingletonBehaviour<GameManager>
         float angle = initialAngle;
 
         //fortest
-
-        Instantiate(Boss);
+        
+        enemies.Add(Instantiate(Boss).gameObject);
         SpawnPanel(PanelType.Normal, VisionType.Blue);
         SpawnPanel(PanelType.Normal, VisionType.Green);
         SpawnPanel(PanelType.Normal, VisionType.Red);

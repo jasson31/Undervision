@@ -7,6 +7,7 @@ public class Boss : Enemy
     public float speedInc;
     public BossCrystal[] crystals;
     public int clCryst;
+    Coroutine patCor;
 
     public void CrystalDestroyed(BossCrystal crys)
     {
@@ -51,6 +52,15 @@ public class Boss : Enemy
             speed = (crystals.Length - clCryst + 2) / 2f * speedInc;
             anit.SetFloat("speed", speed * 50);
 
+            StartCoroutine(BossPatern());
+            foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            {
+                r.material.SetInt("_MaskType", 0);
+                r.material.SetColor("_Color", new Color(0.25f * (crystals.Length - clCryst) / 2f, 0, 0));
+                r.material.SetInt("_StencilComp", 0);
+                if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0f, 0.8f));
+            }
+
             foreach (BossCrystal b in crystals) { b.StartPhase((6 - clCryst) / 2 + 1); }
 
             int befCryst = clCryst;
@@ -72,16 +82,28 @@ public class Boss : Enemy
     public override void Start()
     {
         clCryst = crystals.Length;
-
-        StartCoroutine(BossPatern());
+        
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
             r.material.SetInt("_MaskType", 0);
             r.material.SetColor("_Color", Constants.Vision_Color(VisionType.White));
             r.material.SetInt("_StencilComp", 0);
-            if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0.75f, 0.8f));
+            if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0f, 0.8f));
         }
 
+        patCor = StartCoroutine(BossPatern());
+
         foreach (BossCrystal b in crystals) b.boss = this;
+    }
+
+    public override void GameOver()
+    {
+        StopCoroutine(patCor);
+        foreach (BossCrystal b in crystals)
+        {
+            b.GameOver();
+        }
+        if (GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
+        if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
     }
 }
