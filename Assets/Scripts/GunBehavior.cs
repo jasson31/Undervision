@@ -8,6 +8,7 @@ public class GunBehavior : GrabbableObject
     public Animator animator;
     public Transform firePoint;
     public GameObject bullet;
+    public GameObject[] bulletUI;
     private bool isReloading = false;
     private float bulletSpeed = 50;
     private float triggerDelay = 0.5f, previousTriggeredTime;
@@ -20,6 +21,7 @@ public class GunBehavior : GrabbableObject
         newBullet.GetComponent<Rigidbody>().velocity = firePoint.up.normalized * bulletSpeed;
         bullets--;
         animator.SetTrigger("Fire");
+        bulletUI[bullets].SetActive(false);
         GetComponent<AudioSource>().PlayOneShot(fire);
         Destroy(newBullet, 10);
     }
@@ -30,6 +32,7 @@ public class GunBehavior : GrabbableObject
         animator.SetTrigger("Reload");
         GetComponent<AudioSource>().PlayOneShot(reload);
         yield return new WaitForSeconds(1);
+        for (int i = 0; i < 6; i++) bulletUI[i].SetActive(true);
         bullets = 6;
         isReloading = false;
     }
