@@ -1,19 +1,18 @@
-﻿Shader "Custom/Window"
+﻿Shader "Custom/WindowSecond"
 {
-	Properties{
+	Properties
+	{
 		_MaskType("Mask type", Range(0, 10)) = 0
 	}
-		SubShader
+	SubShader
 	{
 		Tags { "RenderType" = "Opaque" }
-		ZWrite Off
 		ColorMask 0
 		Pass {
-			ZTest Less
 			Stencil {
-				 Ref [_MaskType]
-				 Comp Always
-				 Pass Replace
+				Ref[_MaskType]
+				Comp NotEqual
+				ZFail Replace
 			}
 		}
 	}

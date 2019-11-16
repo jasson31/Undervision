@@ -15,6 +15,7 @@ public class Panel : MonoBehaviour
             r.material.SetColor("_Color", Constants.Vision_Color(_visionType));
         }
         panelRenderer.material.SetInt("_MaskType", (int)_visionType);
+        panelRenderer.material.renderQueue = 1950 + (int)_visionType;
         visionType = _visionType;
     }
 

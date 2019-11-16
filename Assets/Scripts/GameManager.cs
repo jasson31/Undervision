@@ -198,6 +198,18 @@ public class GameManager : SingletonBehaviour<GameManager>
         foreach (GameObject g in enemies) g.GetComponent<Enemy>().GameOver();
     }
 
+    IEnumerator Test()
+    {
+        SpawnEnemy(EnemyType.Golem, VisionType.Red, 22, 0);
+        SpawnEnemy(EnemyType.Golem, VisionType.White, 22, 10);
+        SpawnEnemy(EnemyType.Golem, VisionType.Blue, 22, 20);
+        SpawnEnemy(EnemyType.Golem, VisionType.Green, 22, -20);
+        SpawnPanel(PanelType.Normal, VisionType.Red);
+        SpawnPanel(PanelType.Normal, VisionType.Blue);
+        SpawnPanel(PanelType.Normal, VisionType.Green);
+        yield return null;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -207,6 +219,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         rightH = GameObject.Find("Controller (right)");
         outerWall = GameObject.Find("OuterWall");
         playCoroutine = StartCoroutine(Stage());
+        //playCoroutine = StartCoroutine(Test());
     }
 
     // Update is called once per frame

@@ -43,21 +43,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bb5d0dea5ce934d8623c0db23dfdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  table: {fileID: 0}
+  leftH: {fileID: 0}
+  rightH: {fileID: 0}
+  outerWall: {fileID: 0}
   Drone: {fileID: 834017710229949078, guid: c4bcc3507689c1141aceb901706f8aff, type: 3}
   Golem: {fileID: 3884071980960753680, guid: 566e2f457200afb4e867357328b4942e, type: 3}
   Skull: {fileID: 6572955426381327992, guid: d08fbb50fe9bf484a809b44ea5dda4a1, type: 3}
+  Boss: {fileID: 1155851719, guid: e9aac08dbd31e834babeac19b627b72e, type: 3}
   Normal: {fileID: 7055711348464280282, guid: 45b3f658880ef544697264e8e2a2b1a4, type: 3}
   Long: {fileID: 8778427996235629038, guid: 160bddacaccfc744bb34faa3984a0bb4, type: 3}
   toolSpawnBox: {fileID: 0}
   player: {fileID: 0}
-  enemys: []
+  floor: {fileID: 0}
+  hitParticle: {fileID: 2009515580458147167, guid: 3412f33b21a9a9c49b02f26041a577ed,
+    type: 3}
+  enemies: []
+  closestGreenEnemy: {fileID: 0}
+  gameOver: 0
   initialDelay: 6
   delayDec: 0.2
   delayMin: 2
   delayDecByStage: 0.5
   initialEnemy: 5
-  enemyIncByStage: 3
-  initialAngle: 20
+  enemyIncByStage: 2
+  initialAngle: 30
   angleIncByStage: 10
   angleMax: 70
   stageText: {fileID: 0}

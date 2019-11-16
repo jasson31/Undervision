@@ -5,15 +5,14 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WindowMat
-  m_Shader: {fileID: 4800000, guid: 2e96e2d693ad9b64d86057aa50f33456, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ClearDepthBuffer
+  m_Shader: {fileID: 4800000, guid: 4ee2337484e0b684ea6102904754b8eb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 1975
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -63,7 +62,6 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaskType: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -71,7 +69,6 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilMask: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
