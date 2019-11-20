@@ -12,12 +12,12 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType;
     public GameObject[] hearts;
     [SerializeField]
-    int hp;
+    protected int hp;
     [SerializeField]
-    AudioSource audioSource;
+    protected AudioSource audioSource;
     private float distRate;
     public GameObject redEffect;
-    private Coroutine vibrationCoroutine;
+    protected Coroutine vibrationCoroutine;
 
     public virtual void ChangeColor(VisionType _visionType)
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public GameObject table, leftH, rightH, outerWall;
-    public Enemy Drone, Golem, Skull, Boss;
+    public Enemy Drone, Golem, Skull, BossBody, BossHead;
     public Panel Normal, Long;
     public Transform toolSpawnBox;
     public Transform player;
@@ -184,7 +184,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         }
         StartCoroutine(StageTextShow("Boss Stage"));
         yield return new WaitForSeconds(6f);
-        enemies.Add(Instantiate(Boss).gameObject);
+        enemies.Add(Instantiate(BossBody).gameObject);
     }
     public void EnemyDead(GameObject g)
     {
@@ -209,9 +209,17 @@ public class GameManager : SingletonBehaviour<GameManager>
         SpawnPanel(PanelType.Normal, VisionType.Green);
         yield return null;
     }
-    IEnumerator TestBoss()
+    IEnumerator TestBossBody()
     {
-        enemies.Add(Instantiate(Boss).gameObject);
+        enemies.Add(Instantiate(BossBody).gameObject);
+        SpawnPanel(PanelType.Normal, VisionType.Red);
+        SpawnPanel(PanelType.Normal, VisionType.Blue);
+        SpawnPanel(PanelType.Normal, VisionType.Green);
+        yield return null;
+    }
+    IEnumerator TestBossHead()
+    {
+        enemies.Add(Instantiate(BossHead).gameObject);
         SpawnPanel(PanelType.Normal, VisionType.Red);
         SpawnPanel(PanelType.Normal, VisionType.Blue);
         SpawnPanel(PanelType.Normal, VisionType.Green);
@@ -226,8 +234,9 @@ public class GameManager : SingletonBehaviour<GameManager>
         leftH = GameObject.Find("Controller (left)");
         rightH = GameObject.Find("Controller (right)");
         outerWall = GameObject.Find("OuterWall");
-        playCoroutine = StartCoroutine(Stage());
-        //playCoroutine = StartCoroutine(TestBoss());
+        //playCoroutine = StartCoroutine(Stage());
+        //playCoroutine = StartCoroutine(TestBossBody());
+        playCoroutine = StartCoroutine(TestBossHead());
         //playCoroutine = StartCoroutine(Test());
     }
 

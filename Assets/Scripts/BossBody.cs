@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : Enemy
+public class BossBody : Enemy
 {
     public float speedInc;
     public BossCrystal[] crystals;
@@ -22,7 +22,7 @@ public class Boss : Enemy
             transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
         }
     }
-    IEnumerator BossPatern()
+    IEnumerator BossPattern()
     {
         Vector3 stVec, edVec;
         Animator anit = GetComponent<Animator>();
@@ -68,7 +68,7 @@ public class Boss : Enemy
             if(clCryst <= 0 )
             {
                 GameManager.inst.gameOver = true;
-                StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1));
+                //StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1));
                 anit.SetTrigger("death");
                 yield break;
             }
@@ -98,7 +98,7 @@ public class Boss : Enemy
             if (r.gameObject.tag.Contains("HeartFill")) r.material.SetColor("_Color", new Color(1, 0f, 0.8f));
         }
 
-        patCor = StartCoroutine(BossPatern());
+        patCor = StartCoroutine(BossPattern());
 
         foreach (BossCrystal b in crystals) b.boss = this;
     }

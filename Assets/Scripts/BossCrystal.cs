@@ -9,7 +9,7 @@ public class BossCrystal : Enemy
     public GameObject spherePrefab;
     public GameObject linePrefab;
     public int maxHP;
-    public Boss boss;
+    public BossBody boss;
     public int currHP;
     bool dest;
     Vector3 heartScale, coverScale;
