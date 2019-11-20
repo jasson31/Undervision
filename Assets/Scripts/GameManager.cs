@@ -209,6 +209,14 @@ public class GameManager : SingletonBehaviour<GameManager>
         SpawnPanel(PanelType.Normal, VisionType.Green);
         yield return null;
     }
+    IEnumerator TestBoss()
+    {
+        enemies.Add(Instantiate(Boss).gameObject);
+        SpawnPanel(PanelType.Normal, VisionType.Red);
+        SpawnPanel(PanelType.Normal, VisionType.Blue);
+        SpawnPanel(PanelType.Normal, VisionType.Green);
+        yield return null;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -219,6 +227,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         rightH = GameObject.Find("Controller (right)");
         outerWall = GameObject.Find("OuterWall");
         playCoroutine = StartCoroutine(Stage());
+        //playCoroutine = StartCoroutine(TestBoss());
         //playCoroutine = StartCoroutine(Test());
     }
 
