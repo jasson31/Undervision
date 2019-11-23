@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : Enemy
+public class BossBody : Enemy
 {
     public float speedInc;
     public BossCrystal[] crystals;
@@ -81,10 +81,37 @@ public class Boss : Enemy
 
             if (clCryst <= 0)
             {
-                GameManager.inst.gameOver = true;
+                Vector3 pos = transform.position;
+                int parCnt = 0;
+                float viTmr = 0, parTmr = 0;
+                while (parCnt < 20)
+                {
+                    viTmr += Time.deltaTime;
+                    parTmr += Time.deltaTime;
+                    if(viTmr <= 0.05f)
+                    {
+                        transform.position = pos + Random.insideUnitSphere;
+                        viTmr = 0;
+                    }
+                    if(parTmr <= 0.5f)
+                    {
+                        Vector3 parPos = new Vector3(transform.position.x + Random.Range(-3f, 3f), transform.position.y + Random.Range(2f, 8f), transform.position.z - 0.2f);
+                        Instantiate(GameManager.inst.hitParticle, parPos, Quaternion.identity);
+                        parTmr = 0;
+                        parCnt++;
+                    }
+                    yield return null;
+                }
+
+                GameObject p = Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity);
+                p.transform.localScale = new Vector3(3, 3, 3);
+
+                Instantiate(GameManager.inst.BossHead, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                /*GameManager.inst.gameOver = true;
                 StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1, ""));
                 anit.SetTrigger("death");
-                yield break;
+                yield break;*/
             }
         }
     }
@@ -118,5 +145,6 @@ public class Boss : Enemy
 
     public override void Damaged()
     {
+
     }
 }

@@ -12,12 +12,12 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType;
     public GameObject[] hearts;
     [SerializeField]
-    int hp;
+    protected int hp;
     [SerializeField]
-    AudioSource audioSource;
+    protected AudioSource audioSource;
     private float distRate;
     public GameObject redEffect;
-    private Coroutine vibrationCoroutine;
+    protected Coroutine vibrationCoroutine;
 
     public virtual void ChangeColor(VisionType _visionType)
     {
@@ -53,8 +53,9 @@ public class Enemy : MonoBehaviour
             if (GameManager.inst.gameOver) break;
             else if(GameManager.inst.closestGreenEnemy == this)
             {
-                SteamVR_Input_Sources vibrateHand = transform.position.x > 0 ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
-                hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, vibrateHand);
+                SteamVR_Input_Sources vibrateHand = Vector3.Distance(GameManager.inst.leftH.transform.position, transform.position) >
+                    Vector3.Distance(GameManager.inst.rightH.transform.position, transform.position) ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
+                hapticAction.Execute(0, 0.02f, 200, 500, vibrateHand);
             }
         }
     }
@@ -86,8 +87,8 @@ public class Enemy : MonoBehaviour
             }
             if(visionType == VisionType.Green)
             {
-                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, GameManager.inst.player.transform.position)
-                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, GameManager.inst.player.transform.position))
+                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, GameManager.inst.player.position)
+                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, GameManager.inst.player.position))
                 GameManager.inst.closestGreenEnemy = this;
             }
             distRate = 1 - Vector3.Distance(GameManager.inst.player.position, transform.position) / GameManager.enemySpawnDist;

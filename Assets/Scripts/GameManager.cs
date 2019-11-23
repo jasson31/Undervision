@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public GameObject table, leftH, rightH, outerWall;
-    public Enemy Drone, Golem, Skull, Boss;
+    public Enemy Drone, Golem, Skull, BossBody, BossHead;
     public Panel Normal, Long;
     public GameObject Gun;
     public Transform toolSpawnBox;
@@ -87,7 +87,7 @@ public class GameManager : SingletonBehaviour<GameManager>
                 Debug.LogError("Invalid Enemy Type of " + _enemyType);
                 return null;
         }
-        float rad = degrees * Mathf.PI / 180f;
+        float rad = degrees * Mathf.Deg2Rad;
         temp.transform.position = new Vector3(Mathf.Sin(rad) * dist, _enemyType == EnemyType.Drone ? 5 : 0, Mathf.Cos(rad) * dist);
         temp.ChangeColor(_visionType);
         enemies.Add(temp.gameObject);
@@ -264,7 +264,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         }
         StartCoroutine(StageTextShow("Boss Stage","약점을 파괴하십시오"));
         yield return new WaitForSeconds(6f);
-        enemies.Add(Instantiate(Boss).gameObject);
+        enemies.Add(Instantiate(BossBody).gameObject);
     }
     public void EnemyDead(GameObject g)
     {
@@ -290,6 +290,27 @@ public class GameManager : SingletonBehaviour<GameManager>
         SpawnPanel(PanelType.Normal, VisionType.Green);
         yield return null;
     }
+    IEnumerator TestBossBody()
+    {
+        enemies.Add(Instantiate(BossBody).gameObject);
+        SpawnPanel(PanelType.Normal, VisionType.Red);
+        SpawnPanel(PanelType.Normal, VisionType.Blue);
+        SpawnPanel(PanelType.Normal, VisionType.Green);
+        SpawnGun();
+        SpawnGun();
+        yield return null;
+    }
+    IEnumerator TestBossHead()
+    {
+        enemies.Add(Instantiate(BossHead, new Vector3(0, 5, 18), Quaternion.identity).gameObject);
+        SpawnPanel(PanelType.Normal, VisionType.Red);
+        SpawnPanel(PanelType.Normal, VisionType.Blue);
+        SpawnPanel(PanelType.Normal, VisionType.Green);
+        SpawnGun();
+        SpawnGun();
+
+        yield return null;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -300,6 +321,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         rightH = GameObject.Find("Controller (right)");
         outerWall = GameObject.Find("OuterWall");
         StartCoroutine(GameFlow());
+        //StartCoroutine(TestBossBody());
     }
 
     // Update is called once per frame
