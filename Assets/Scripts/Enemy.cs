@@ -53,7 +53,8 @@ public class Enemy : MonoBehaviour
             if (GameManager.inst.gameOver) break;
             else if(GameManager.inst.closestGreenEnemy == this)
             {
-                SteamVR_Input_Sources vibrateHand = transform.position.x > 0 ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
+                SteamVR_Input_Sources vibrateHand = Vector3.Distance(GameManager.inst.leftH.transform.position, transform.position) >
+                    Vector3.Distance(GameManager.inst.rightH.transform.position, transform.position) ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
                 hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, vibrateHand);
             }
         }

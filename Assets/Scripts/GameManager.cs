@@ -219,7 +219,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     }
     IEnumerator TestBossHead()
     {
-        enemies.Add(Instantiate(BossHead).gameObject);
+        enemies.Add(Instantiate(BossHead, new Vector3(0, 5, 18), Quaternion.identity).gameObject);
         SpawnPanel(PanelType.Normal, VisionType.Red);
         SpawnPanel(PanelType.Normal, VisionType.Blue);
         SpawnPanel(PanelType.Normal, VisionType.Green);
