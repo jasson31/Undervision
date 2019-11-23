@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBody : Enemy
 {
-    public float speedInc;
+    public float speedInc, initSpeed;
     public BossCrystal[] crystals;
     public int clCryst;
     Coroutine patCor;
@@ -49,7 +49,7 @@ public class BossBody : Enemy
 
         while(clCryst > 0)
         {
-            speed = 2f * speedInc;
+            speed = initSpeed + speedInc * (6 - clCryst) / 2;
             anit.SetFloat("speed", speed * 50);
 
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
@@ -84,16 +84,16 @@ public class BossBody : Enemy
                 Vector3 pos = transform.position;
                 int parCnt = 0;
                 float viTmr = 0, parTmr = 0;
-                while (parCnt < 20)
+                while (parCnt < 10)
                 {
                     viTmr += Time.deltaTime;
                     parTmr += Time.deltaTime;
-                    if(viTmr <= 0.05f)
+                    if(viTmr >= 0.05f)
                     {
                         transform.position = pos + Random.insideUnitSphere;
                         viTmr = 0;
                     }
-                    if(parTmr <= 0.5f)
+                    if(parTmr >= 0.5f)
                     {
                         Vector3 parPos = new Vector3(transform.position.x + Random.Range(-3f, 3f), transform.position.y + Random.Range(2f, 8f), transform.position.z - 0.2f);
                         Instantiate(GameManager.inst.hitParticle, parPos, Quaternion.identity);

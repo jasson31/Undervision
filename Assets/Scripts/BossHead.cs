@@ -112,6 +112,7 @@ public class BossHead : Enemy
     public override void GameOver()
     {
         StopCoroutine(bossPattern);
+        Destroy(headRedEffect);
         base.GameOver();
     }
 
@@ -127,6 +128,7 @@ public class BossHead : Enemy
             GameObject p = Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity);
             p.transform.localScale = new Vector3(3, 3, 3);
             StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1, ""));
+            GameManager.inst.restartButton.SetActive(true);
         }
     }
 }
