@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
             {
                 SteamVR_Input_Sources vibrateHand = Vector3.Distance(GameManager.inst.leftH.transform.position, transform.position) >
                     Vector3.Distance(GameManager.inst.rightH.transform.position, transform.position) ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
-                hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, vibrateHand);
+                hapticAction.Execute(0, 0.02f, 200, 500, vibrateHand);
             }
         }
     }

@@ -24,7 +24,7 @@ public class BossHead : Enemy
         if (visionType != VisionType.Red) cands.Add(VisionType.Red);
         if (visionType != VisionType.Green) cands.Add(VisionType.Green);
         if (visionType != VisionType.Blue) cands.Add(VisionType.Blue);
-        return cands[Random.Range(0, cands.Count - 1)];
+        return cands[Random.Range(0, cands.Count)];
     }
     void ChangeBossHeadColor()
     {
@@ -66,10 +66,8 @@ public class BossHead : Enemy
 
     IEnumerator BossPattern()
     {
-        /*for (float timer = 0; timer <= 3f; timer += Time.deltaTime)
-        {
-            yield return null;
-        }*/
+        yield return new WaitForSeconds(3f);
+        GameManager.inst.closestGreenEnemy = this;
         headRedEffect.transform.parent = null;
         headRedEffect.SetActive(false);
         prevColorChangedTime = prevMovedTime = Time.time;
@@ -89,7 +87,7 @@ public class BossHead : Enemy
 
                 float dist = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), GameManager.inst.player.position);
                 float rad = Random.Range(-30f, 30f) * Mathf.Deg2Rad;
-                Vector3 jumpPos = new Vector3(Mathf.Sin(rad) * dist, transform.position.y, Mathf.Cos(rad) * dist);
+                Vector3 jumpPos = new Vector3(Mathf.Sin(rad) * dist, Random.Range(1f, 5f), Mathf.Cos(rad) * dist);
                 float duration = 0.3f, x = 0;
                 for (float timer = 0; timer <= duration; timer += Time.deltaTime)
                 {
