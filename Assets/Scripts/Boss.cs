@@ -49,7 +49,7 @@ public class Boss : Enemy
 
         while(clCryst > 0)
         {
-            speed = (crystals.Length - clCryst + 2) / 2f * speedInc;
+            speed = 2f * speedInc;
             anit.SetFloat("speed", speed * 50);
 
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
@@ -65,13 +65,7 @@ public class Boss : Enemy
             int befCryst = clCryst;
             while (clCryst > befCryst - 2) yield return null;
 
-            if(clCryst <= 0 )
-            {
-                GameManager.inst.gameOver = true;
-                StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1));
-                anit.SetTrigger("death");
-                yield break;
-            }
+
 
             foreach (BossCrystal b in crystals) b.EndPhase();
 
@@ -84,6 +78,14 @@ public class Boss : Enemy
                 yield return null;
             }
             transform.position = edVec;
+
+            if (clCryst <= 0)
+            {
+                GameManager.inst.gameOver = true;
+                StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1, ""));
+                anit.SetTrigger("death");
+                yield break;
+            }
         }
     }
     public override void Start()

@@ -23,7 +23,7 @@ public class BossCrystal : Enemy
         public GameObject sphere;
         public GameObject line;
         public VisionType visionType;
-        BossCrystal crystal;
+        public BossCrystal crystal;
         public Balloon(GameObject sp, GameObject lp, BossCrystal _crystal)
         {
             sphere = Instantiate(sp);
@@ -35,6 +35,7 @@ public class BossCrystal : Enemy
         public void ChangeColor(VisionType _visionType)
         {
             visionType = _visionType;
+            sphere.GetComponent<Enemy>().visionType = _visionType;
             Renderer r = sphere.GetComponent<Renderer>();
             r.material.SetInt("_MaskType", (int)visionType);
             r.material.SetColor("_Color", Constants.Vision_Color(visionType));
@@ -60,9 +61,9 @@ public class BossCrystal : Enemy
             r.material.SetInt("_StencilComp", 0);
         }
 
-        public void LineConnect(Transform trns)
+        public void LineConnect()
         {
-            line.GetComponent<LineRenderer>().SetPositions(new Vector3[] { trns.position, sphere.transform.position });
+            line.GetComponent<LineRenderer>().SetPositions(new Vector3[] { crystal.transform.position, sphere.transform.position });
         }
 
         public void Destroyed()
@@ -123,7 +124,7 @@ public class BossCrystal : Enemy
 
     public override void Update()
     {
-        foreach (Balloon b in balloons) b.LineConnect(transform);
+        foreach (Balloon b in balloons) b.LineConnect();
     }
 
     IEnumerator CrystalCoroutine(int balNum)
@@ -175,7 +176,7 @@ public class BossCrystal : Enemy
             coll.enabled = true;
             prevHP = currHP;
 
-            for (float timer = 0; timer <= 9 - balNum * 2; timer += Time.deltaTime)
+            for (float timer = 0; timer <= 6; timer += Time.deltaTime)
             {
                 //if (prevHP - currHP >= maxHP / 2 + 1 || currHP <= 0) break;
                 yield return null;

@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public GameObject table, leftH, rightH, outerWall;
     public Enemy Drone, Golem, Skull, Boss;
     public Panel Normal, Long;
+    public GameObject Gun;
     public Transform toolSpawnBox;
     public Transform player;
     public Transform floor;
-    public GameObject hitParticle;
+    public GameObject hitParticle, hitParticleLoop;
     public List<GameObject> enemies;
     public Enemy closestGreenEnemy;
     public static float enemySpawnDist = 22;
     public bool gameOver;
+    public bool stageStart;
 
     public float initialDelay;
     public float delayDec;
@@ -25,7 +28,11 @@ public class GameManager : SingletonBehaviour<GameManager>
     public float initialAngle;
     public float angleIncByStage;
     public float angleMax;
-    public TextMesh stageText;
+    public TextMesh stageText, subText;
+
+    public SpriteRenderer title, tutorial;
+
+    public GameObject startButton, restartButton;
 
     Coroutine playCoroutine;
     private Panel SpawnPanel(PanelType _panelType, VisionType _visionType)
@@ -51,7 +58,17 @@ public class GameManager : SingletonBehaviour<GameManager>
         temp.ChangeColor(_visionType);
         return temp;
     }
-
+    private GameObject SpawnGun()
+    {
+        GameObject temp = null;
+        temp = Instantiate(Gun);
+        toolSpawnBox.position = new Vector3(player.position.x, toolSpawnBox.position.y, player.position.z + 0.3f);
+        temp.transform.position = new Vector3(
+            Random.Range(toolSpawnBox.position.x - toolSpawnBox.localScale.x / 2, toolSpawnBox.position.x + toolSpawnBox.localScale.x / 2),
+            Random.Range(toolSpawnBox.position.y - toolSpawnBox.localScale.y / 2, toolSpawnBox.position.y + toolSpawnBox.localScale.y / 2),
+            Random.Range(toolSpawnBox.position.z - toolSpawnBox.localScale.z / 2, toolSpawnBox.position.z + toolSpawnBox.localScale.z / 2));
+        return temp;
+    }
     private Enemy SpawnEnemy(EnemyType _enemyType, VisionType _visionType, float dist, float degrees)
     {
         Enemy temp = null;
@@ -77,15 +94,23 @@ public class GameManager : SingletonBehaviour<GameManager>
         return temp;
     }
 
-    public IEnumerator StageTextShow(string s, float f)
+    public IEnumerator StageTextShow(string s, float f, string sub)
     {
         stageText.text = s;
+        subText.text = sub;
         for (float t = 0; t < 0.5; t += Time.deltaTime)
         {
             stageText.color = new Color(1, 1, 1, t * 2);
             yield return null;
         }
         stageText.color = new Color(1, 1, 1, 1);
+
+        for (float t = 0; t < 0.5; t += Time.deltaTime)
+        {
+            subText.color = new Color(1, 1, 1, t * 2);
+            yield return null;
+        }
+        subText.color = new Color(1, 1, 1, 1);
 
         if (f < 0) yield break;
 
@@ -94,31 +119,76 @@ public class GameManager : SingletonBehaviour<GameManager>
         for (float t = 0; t < 2; t += Time.deltaTime)
         {
             stageText.color = new Color(1, 1, 1, 1 - t / 2);
+            subText.color = new Color(1, 1, 1, 1 - t / 2);
             yield return null;
         }
         stageText.color = new Color(1, 1, 1, 0);
+        subText.color = new Color(1, 1, 1, 0);
     }
-    public IEnumerator StageTextShow(string s)
+    public IEnumerator StageTextShow(string s, string sub)
     {
         stageText.text = s;
-        for(float t = 0; t < 0.5; t += Time.deltaTime)
+        subText.text = sub;
+        for (float t = 0; t < 0.5; t += Time.deltaTime)
         {
             stageText.color = new Color(1, 1, 1, t * 2);
             yield return null;
         }
         stageText.color = new Color(1, 1, 1, 1);
 
+        for (float t = 0; t < 0.5; t += Time.deltaTime)
+        {
+            subText.color = new Color(1, 1, 1, t * 2);
+            yield return null;
+        }
+        subText.color = new Color(1, 1, 1, 1);
+
         yield return new WaitForSeconds(2f);
 
         for (float t = 0; t < 2; t += Time.deltaTime)
         {
             stageText.color = new Color(1, 1, 1, 1 - t / 2);
+            subText.color = new Color(1, 1, 1, 1 - t / 2);
             yield return null;
         }
         stageText.color = new Color(1, 1, 1, 0);
+        subText.color = new Color(1, 1, 1, 0);
+    }
+    IEnumerator GameFlow()
+    {
+        Coroutine tuto = StartCoroutine(Tutorial());
+        SpawnGun();
+        Panel tutored = SpawnPanel(PanelType.Normal, VisionType.Red);
+
+        while (!stageStart) yield return null;
+
+        leftH.GetComponent<ControllerGrab>().DropObject();
+        rightH.GetComponent<ControllerGrab>().DropObject();
+        Destroy(tutored.gameObject);
+        StopCoroutine(tuto);
+        tutorial.color = new Color(1, 1, 1, 0f);
+        title.enabled = false;
+        SpawnGun();
+
+        playCoroutine = StartCoroutine(Stage());
+
+        while (stageStart) yield return null;
+        SceneManager.LoadScene("WorldScene");
+    }
+    IEnumerator Tutorial()
+    {
+        
+        yield return new WaitForSeconds(5f);
+
+        for(float timer = 0f; timer < 1f; timer += Time.deltaTime)
+        {
+            tutorial.color = new Color(1, 1, 1, timer / 1f);
+            yield return null;
+        }
     }
     IEnumerator Stage()
     {
+
         List<VisionType> enableType = new List<VisionType>();
         List<VisionType> disableType = new List<VisionType>();
         List<PanelType> panelCand = new List<PanelType>();
@@ -138,10 +208,9 @@ public class GameManager : SingletonBehaviour<GameManager>
         int enemyNum = initialEnemy;
         float angle = initialAngle;
 
-        //fortest
 
         //스테이지 0 안내
-        StartCoroutine(StageTextShow("Stage 0"));
+        StartCoroutine(StageTextShow("Stage 0", ""));
         yield return new WaitForSeconds(5f);
 
         while (true)
@@ -169,6 +238,7 @@ public class GameManager : SingletonBehaviour<GameManager>
             enemyNum += enemyIncByStage;
             delay = Mathf.Max(initialDelay - delayDecByStage * stage, delayMin);
             angle = Mathf.Min(angle + angleIncByStage, angleMax);
+            string s = "";
             if(disableType.Count > 0)
             {
                 VisionType newVision = disableType[Random.Range(0, disableType.Count)];
@@ -178,11 +248,21 @@ public class GameManager : SingletonBehaviour<GameManager>
                 int pTmp = Random.Range(0, panelCand.Count);
                 SpawnPanel(panelCand[pTmp], newVision);
                 panelCand.RemoveAt(pTmp);
+
+                switch(newVision)
+                {
+                    case VisionType.Red:
+                        s = "붉은 원 근처에 붉은 적이 있습니다"; break;
+                    case VisionType.Blue:
+                        s = "푸른 적은 특수한 소리를 냅니다"; break;
+                    case VisionType.Green:
+                        s = "녹색 적은 가까운 컨트롤러에 진동을 줍니다"; break;
+                }
             }
-            StartCoroutine(StageTextShow("Stage " + stage));
+            StartCoroutine(StageTextShow("Stage " + stage, s));
             yield return new WaitForSeconds(6f);
         }
-        StartCoroutine(StageTextShow("Boss Stage"));
+        StartCoroutine(StageTextShow("Boss Stage","약점을 파괴하십시오"));
         yield return new WaitForSeconds(6f);
         enemies.Add(Instantiate(Boss).gameObject);
     }
@@ -196,6 +276,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         gameOver = true;
         StopCoroutine(playCoroutine);
         foreach (GameObject g in enemies) g.GetComponent<Enemy>().GameOver();
+        restartButton.SetActive(true);
     }
 
     IEnumerator Test()
@@ -218,8 +299,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         leftH = GameObject.Find("Controller (left)");
         rightH = GameObject.Find("Controller (right)");
         outerWall = GameObject.Find("OuterWall");
-        playCoroutine = StartCoroutine(Stage());
-        //playCoroutine = StartCoroutine(Test());
+        StartCoroutine(GameFlow());
     }
 
     // Update is called once per frame

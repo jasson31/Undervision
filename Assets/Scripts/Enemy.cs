@@ -120,6 +120,7 @@ public class Enemy : MonoBehaviour
         }
         if (GetComponent<Animator>()) GetComponent<Animator>().enabled = false;
         if (GetComponent<Rigidbody>()) GetComponent<Rigidbody>().isKinematic = true;
+        if (GetComponent<Collider>()) GetComponent<Collider>().enabled = false;
         switch (visionType)
         {
             case VisionType.Red:
