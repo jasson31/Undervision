@@ -70,7 +70,7 @@ public class GameManager : SingletonBehaviour<GameManager>
                 Debug.LogError("Invalid Enemy Type of " + _enemyType);
                 return null;
         }
-        float rad = degrees * Mathf.PI / 180f;
+        float rad = degrees * Mathf.Deg2Rad;
         temp.transform.position = new Vector3(Mathf.Sin(rad) * dist, _enemyType == EnemyType.Drone ? 5 : 0, Mathf.Cos(rad) * dist);
         temp.ChangeColor(_visionType);
         enemies.Add(temp.gameObject);

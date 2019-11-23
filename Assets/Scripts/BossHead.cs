@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BossHead : Enemy
 {
-    float prevChangedTime = 0;
-    float colorChangeDelay = 10;
+    float prevColorChangedTime = 0, prevMovedTime = 0;
+    float colorChangeDelay = 10, moveDelay = 2;
     public GameObject headRedEffect;
     Coroutine bossPattern;
 
@@ -20,12 +20,11 @@ public class BossHead : Enemy
     }
     VisionType GetRandomColor()
     {
-        int random = (int)Time.time % 2 == 0 ? 1 : -1;
-        Debug.Log(random);
-        int newVisionType = (int)visionType + random;
-        if (newVisionType < 0) newVisionType = 3 + newVisionType;
-        if (newVisionType == 0) newVisionType = newVisionType + Random.Range(1, 3);
-        return (VisionType)newVisionType;
+        List<VisionType> cands = new List<VisionType>();
+        if (visionType != VisionType.Red) cands.Add(VisionType.Red);
+        if (visionType != VisionType.Green) cands.Add(VisionType.Green);
+        if (visionType != VisionType.Blue) cands.Add(VisionType.Blue);
+        return cands[Random.Range(0, cands.Count - 1)];
     }
     void ChangeBossHeadColor()
     {
@@ -65,7 +64,7 @@ public class BossHead : Enemy
         }
     }
 
-    IEnumerator BossColorPattern()
+    IEnumerator BossPattern()
     {
         /*for (float timer = 0; timer <= 3f; timer += Time.deltaTime)
         {
@@ -73,73 +72,42 @@ public class BossHead : Enemy
         }*/
         headRedEffect.transform.parent = null;
         headRedEffect.SetActive(false);
-        prevChangedTime = Time.time;
+        prevColorChangedTime = prevMovedTime = Time.time;
 
-
-        float xLimit, angle = 0;
-
-        Coroutine moving = StartCoroutine(BossMovePattern());
         while (!GameManager.inst.gameOver)
         {
             yield return null;
-            if (Time.time - prevChangedTime >= colorChangeDelay)
+            if (Time.time - prevColorChangedTime >= colorChangeDelay)
             {
                 ChangeBossHeadColor();
-                prevChangedTime = Time.time;
+                prevColorChangedTime = Time.time;
             }
 
-            /*xLimit = Vector3.Distance(transform.position, GameManager.inst.player.position) * 5 / 12;
-
-            angle += Time.deltaTime;
-            if (angle == Mathf.PI * 2) angle = 0;
-            float sin = Mathf.Sin(angle);
-
-            transform.position = new Vector3(sin * xLimit * 0.5f, transform.position.y, transform.position.z);*/
-
-        }
-        StopCoroutine(moving);
-    }
-
-
-
-
-
-    IEnumerator BossMovePattern()
-    {
-
-        float dist = Vector3.Distance(transform.position, GameManager.inst.player.position);
-        float rad = Random.Range(-20f, 20f) * Mathf.PI / 180f + Mathf.Atan2(transform.position.z, transform.position.x);
-        if(rad > 20) rad = 20
-        Vector3 jumpPos = new Vector3(Mathf.Cos(rad) * dist, 0, Mathf.Sin(rad) * dist);
-
-
-
-
-        float rad = degrees * Mathf.PI / 180f;
-        temp.transform.position = new Vector3(Mathf.Sin(rad) * dist, _enemyType == EnemyType.Drone ? 5 : 0, Mathf.Cos(rad) * dist);
-        temp.ChangeColor(_visionType);
-        while (!GameManager.inst.gameOver)
-        {
-            yield return null;
-            if (Time.time - prevChangedTime >= colorChangeDelay)
+            if (Time.time - prevMovedTime >= moveDelay)
             {
-                ChangeBossHeadColor();
-                prevChangedTime = Time.time;
-            }
+                Vector3 originalPos = transform.position;
 
+                float dist = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), GameManager.inst.player.position);
+                float rad = Random.Range(-30f, 30f) * Mathf.Deg2Rad;
+                Vector3 jumpPos = new Vector3(Mathf.Sin(rad) * dist, transform.position.y, Mathf.Cos(rad) * dist);
+                float duration = 0.3f, x = 0;
+                for (float timer = 0; timer <= duration; timer += Time.deltaTime)
+                {
+                    x = timer / duration;
+                    transform.position = Vector3.Lerp(originalPos, jumpPos, x * x * x);
+                    yield return null;
+                }
+                prevMovedTime = Time.time;
+            }
         }
     }
-
-
-
-
 
     public override void Start()
     {
         audioSource = GetComponent<AudioSource>();
         visionType = VisionType.White;
         ChangeBossHeadColor();
-        bossPattern = StartCoroutine(BossColorPattern());
+        bossPattern = StartCoroutine(BossPattern());
     }
 
     public override void GameOver()

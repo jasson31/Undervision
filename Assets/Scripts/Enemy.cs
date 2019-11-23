@@ -87,8 +87,8 @@ public class Enemy : MonoBehaviour
             }
             if(visionType == VisionType.Green)
             {
-                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, GameManager.inst.player.transform.position)
-                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, GameManager.inst.player.transform.position))
+                if(GameManager.inst.closestGreenEnemy == null || Vector3.Distance(transform.position, GameManager.inst.player.position)
+                    < Vector3.Distance(GameManager.inst.closestGreenEnemy.transform.position, GameManager.inst.player.position))
                 GameManager.inst.closestGreenEnemy = this;
             }
             distRate = 1 - Vector3.Distance(GameManager.inst.player.position, transform.position) / GameManager.enemySpawnDist;
