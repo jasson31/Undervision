@@ -8,6 +8,7 @@ public class BossHead : Enemy
     float colorChangeDelay = 10, moveDelay = 2;
     public GameObject headRedEffect;
     Coroutine bossPattern;
+    public AudioClip boomSound;
 
     public override void Update()
     {
@@ -16,6 +17,7 @@ public class BossHead : Enemy
             transform.Translate(Vector3.Normalize(GameManager.inst.player.position - transform.position) * speed, Space.World);
             transform.LookAt(GameManager.inst.player);
             transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
+            distRate = 1 - Vector3.Distance(GameManager.inst.player.position, transform.position) / GameManager.enemySpawnDist;
         }
     }
     VisionType GetRandomColor()
@@ -86,7 +88,7 @@ public class BossHead : Enemy
                 Vector3 originalPos = transform.position;
 
                 float dist = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), GameManager.inst.player.position);
-                float rad = Random.Range(-30f, 30f) * Mathf.Deg2Rad;
+                float rad = Random.Range(-45f, 45f) * Mathf.Deg2Rad;
                 Vector3 jumpPos = new Vector3(Mathf.Sin(rad) * dist, Random.Range(1f, 5f), Mathf.Cos(rad) * dist);
                 float duration = 0.3f, x = 0;
                 for (float timer = 0; timer <= duration; timer += Time.deltaTime)
@@ -98,7 +100,7 @@ public class BossHead : Enemy
                 prevMovedTime = Time.time;
             }
         }
-        Destroy(gameObject);
+        
     }
 
     public override void Start()
@@ -129,6 +131,16 @@ public class BossHead : Enemy
             p.transform.localScale = new Vector3(3, 3, 3);
             StartCoroutine(GameManager.inst.StageTextShow("CLEAR", -1, ""));
             GameManager.inst.restartButton.SetActive(true);
+            GameManager.inst.restartButton.GetComponent<TextMesh>().color = new Color(1, 1, 1, 1);
+            audioSource.PlayOneShot(boomSound);
+            foreach (Renderer r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+            if (GetComponent<Renderer>()) GetComponent<Renderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+            Destroy(gameObject,boomSound.length);
+        }
+        else
+        {
+            audioSource.PlayOneShot(hitSound);
         }
     }
 }

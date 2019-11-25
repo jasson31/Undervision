@@ -15,9 +15,10 @@ public class Enemy : MonoBehaviour
     protected int hp;
     [SerializeField]
     protected AudioSource audioSource;
-    private float distRate;
+    protected float distRate;
     public GameObject redEffect;
     protected Coroutine vibrationCoroutine;
+    public AudioClip hitSound, dieSound;
 
     public virtual void ChangeColor(VisionType _visionType)
     {
@@ -55,7 +56,7 @@ public class Enemy : MonoBehaviour
             {
                 SteamVR_Input_Sources vibrateHand = Vector3.Distance(GameManager.inst.leftH.transform.position, transform.position) >
                     Vector3.Distance(GameManager.inst.rightH.transform.position, transform.position) ? SteamVR_Input_Sources.RightHand : SteamVR_Input_Sources.LeftHand;
-                hapticAction.Execute(0, 0.02f, 200, 500, vibrateHand);
+                hapticAction.Execute(0, 0.02f, distRate * 200, distRate * 500, vibrateHand);
             }
         }
     }
@@ -98,20 +99,37 @@ public class Enemy : MonoBehaviour
     {
         if (!GameManager.inst.gameOver)
         {
-            hp--;
+            hp = Mathf.Max(hp-1, 0);
             Instantiate(GameManager.inst.hitParticle, transform.position, Quaternion.identity).GetComponent<HitParticle>().SetColor(visionType);
             for (int i = hp; i < hearts.Length; i++)
             {
                 hearts[i].SetActive(false);
             }
             if (hp <= 0) Killed();
+            else audioSource.PlayOneShot(hitSound);
         }
     }
     public virtual void Killed()
     {
         if (visionType == VisionType.Red) Destroy(redEffect);
+        switch (visionType)
+        {
+            case VisionType.Red:
+                break;
+            case VisionType.Green:
+                StopCoroutine(vibrationCoroutine);
+                break;
+            case VisionType.Blue:
+                audioSource.Stop();
+                break;
+        }
+        audioSource.PlayOneShot(dieSound);
         GameManager.inst.EnemyDead(gameObject);
-        Destroy(gameObject);
+        foreach (Renderer r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+        if(GetComponent<Renderer>()) GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        Destroy(gameObject, dieSound.length);
     }
     public virtual void GameOver()
     {

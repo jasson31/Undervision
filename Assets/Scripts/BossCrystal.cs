@@ -17,6 +17,7 @@ public class BossCrystal : Enemy
     public Coroutine actCor;
     Collider coll;
     List<Balloon> balloons;
+    public AudioClip boomSound;
 
     public class Balloon
     {
@@ -71,6 +72,7 @@ public class BossCrystal : Enemy
             if (crystal.balloons.Contains(this)) crystal.balloons.Remove(this);
             Destroy(sphere);
             Destroy(line);
+            crystal.audioSource.PlayOneShot(crystal.hitSound);
         }
     }
 
@@ -84,6 +86,7 @@ public class BossCrystal : Enemy
             dest = true;
             Killed();
         }
+        else audioSource.PlayOneShot(hitSound);
     }
 
     public override void Start()
@@ -99,8 +102,11 @@ public class BossCrystal : Enemy
 
     public override void Killed()
     {
-        gameObject.SetActive(false);
+        foreach (Renderer r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+        if(GetComponent<Renderer>()) GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
         boss.CrystalDestroyed(this);
+        audioSource.PlayOneShot(dieSound);
     }
     
     public void StartPhase(int balNum)
@@ -167,11 +173,8 @@ public class BossCrystal : Enemy
 
             while (balloons.Count > 0) yield return null;
 
-            for (float timer = 0; timer <= 0.5f; timer += Time.deltaTime)
-            {
-                cover.transform.localScale = new Vector3(coverScale.x * (0.5f - timer) / 0.5f, coverScale.y * (0.5f - timer) / 0.5f, coverScale.z);
-                yield return null;
-            }
+            audioSource.PlayOneShot(boomSound);
+
             cover.SetActive(false);
             coll.enabled = true;
             prevHP = currHP;

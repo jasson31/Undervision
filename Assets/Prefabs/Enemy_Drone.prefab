@@ -107,6 +107,8 @@ MonoBehaviour:
   audioSource: {fileID: 759224403243279207}
   redEffect: {fileID: 8170656751950170684, guid: 5abfcc63ccdd3ae4686d74d259064f7e,
     type: 3}
+  hitSound: {fileID: 8300000, guid: ea5995c859c39f941b78236ebc29a0ce, type: 3}
+  dieSound: {fileID: 8300000, guid: 935eda8feaf1d4e42b0ec1475b3f217b, type: 3}
 --- !u!82 &759224403243279207
 AudioSource:
   m_ObjectHideFlags: 0
